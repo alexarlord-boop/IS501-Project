@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+
+<html class="light" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>FreshBakes | Artisan Bakery</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&amp;family=Inter:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+      tailwind.config = {
+        darkMode: "class",
+        theme: {
+          extend: {
+            "colors": {
+                    "background": "#fcf9f4",
+                    "on-primary-fixed": "#351000",
+                    "surface-variant": "#e5e2dd",
+                    "surface-container-lowest": "#ffffff",
+                    "surface-container-highest": "#e5e2dd",
+                    "on-primary": "#ffffff",
+                    "surface-container-high": "#ebe8e3",
+                    "primary": "#99420d",
+                    "error-container": "#ffdad6",
+                    "secondary": "#685d46",
+                    "primary-container": "#b95925",
+                    "on-tertiary": "#ffffff",
+                    "inverse-on-surface": "#f3f0eb",
+                    "surface-dim": "#dcdad5",
+                    "secondary-fixed-dim": "#d3c5a8",
+                    "inverse-primary": "#ffb693",
+                    "on-error": "#ffffff",
+                    "on-surface": "#1c1c19",
+                    "on-tertiary-container": "#f6fff4",
+                    "on-surface-variant": "#56433a",
+                    "error": "#ba1a1a",
+                    "surface-container": "#f0ede9",
+                    "surface": "#fcf9f4",
+                    "on-primary-container": "#fffbff",
+                    "on-error-container": "#93000a",
+                    "tertiary-fixed": "#b9efc5",
+                    "outline-variant": "#dcc1b5",
+                    "inverse-surface": "#31302d",
+                    "tertiary": "#346645",
+                    "on-tertiary-fixed-variant": "#1e5031",
+                    "on-primary-fixed-variant": "#7a3000",
+                    "on-background": "#1c1c19",
+                    "surface-tint": "#9c440f",
+                    "on-tertiary-fixed": "#00210e",
+                    "surface-bright": "#fcf9f4",
+                    "on-secondary": "#ffffff",
+                    "surface-container-low": "#f6f3ee",
+                    "primary-fixed-dim": "#ffb693",
+                    "on-secondary-fixed-variant": "#4f4630",
+                    "primary-fixed": "#ffdbcc",
+                    "tertiary-container": "#4d7f5c",
+                    "secondary-fixed": "#f0e1c3",
+                    "outline": "#897268",
+                    "tertiary-fixed-dim": "#9dd3aa",
+                    "on-secondary-container": "#6e634c",
+                    "secondary-container": "#f0e1c3",
+                    "on-secondary-fixed": "#221b08"
+            },
+            "borderRadius": {
+                    "DEFAULT": "1rem",
+                    "lg": "2rem",
+                    "xl": "3rem",
+                    "full": "9999px"
+            },
+            "fontFamily": {
+                    "headline": ["Playfair Display", "serif"],
+                    "body": ["Inter", "sans-serif"],
+                    "label": ["Inter", "sans-serif"]
+            }
+          },
+        },
+      }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .hide-scrollbar::-webkit-scrollbar { display: none; }
+        .hide-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        .terracotta-gradient {
+            background: linear-gradient(135deg, #99420d 0%, #b95925 100%);
+        }
+        .glass-header {
+            background-color: rgba(252, 249, 244, 0.8);
+            backdrop-filter: blur(16px);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-surface text-on-surface font-body selection:bg-primary-fixed selection:text-on-primary-fixed overflow-x-hidden">
+<!-- TopAppBar -->
+<nav class="fixed top-0 w-full z-50 glass-header flex justify-between items-center px-6 py-4 w-full shadow-sm dark:shadow-none">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="bakery_dining">bakery_dining</span>
+<span class="font-headline italic text-primary text-2xl tracking-tight">FreshBakes</span>
+</div>
+<div class="flex items-center gap-4">
+<button class="font-label text-xs uppercase tracking-widest text-on-surface-variant font-medium opacity-80 hover:opacity-100 transition-opacity">Login</button>
+<div class="relative">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="shopping_bag">shopping_bag</span>
+<span class="absolute -top-1 -right-1 bg-primary text-white text-[10px] w-4 h-4 flex items-center justify-center rounded-full font-bold">2</span>
+</div>
+</div>
+</nav>
+<!-- Main Content Canvas -->
+<main class="pt-20 pb-32">
+<!-- Category Filter Bar -->
+<div class="px-6 py-4 overflow-x-auto hide-scrollbar flex gap-3 items-center">
+<button class="whitespace-nowrap px-6 py-2 terracotta-gradient text-white rounded-full text-sm font-medium shadow-md">All</button>
+<button class="whitespace-nowrap px-6 py-2 bg-surface-container-low border border-outline-variant/30 text-on-surface-variant rounded-full text-sm font-medium hover:bg-surface-container transition-colors">Cakes</button>
+<button class="whitespace-nowrap px-6 py-2 bg-surface-container-low border border-outline-variant/30 text-on-surface-variant rounded-full text-sm font-medium hover:bg-surface-container transition-colors">Croissants &amp; Pastries</button>
+<button class="whitespace-nowrap px-6 py-2 bg-surface-container-low border border-outline-variant/30 text-on-surface-variant rounded-full text-sm font-medium hover:bg-surface-container transition-colors">Sourdough</button>
+<button class="whitespace-nowrap px-6 py-2 bg-surface-container-low border border-outline-variant/30 text-on-surface-variant rounded-full text-sm font-medium hover:bg-surface-container transition-colors">Custom Orders</button>
+</div>
+<!-- Loyalty Points Banner -->
+<div class="mx-6 mb-8 p-4 rounded-2xl bg-tertiary/10 border border-tertiary/20 flex items-center justify-between">
+<div class="flex items-center gap-3">
+<span class="material-symbols-outlined text-tertiary" data-icon="military_tech" style="font-variation-settings: 'FILL' 1;">military_tech</span>
+<p class="text-sm font-medium text-tertiary-fixed-variant">You have 240 loyalty points — worth €2.40</p>
+</div>
+<input class="w-5 h-5 rounded border-tertiary text-tertiary focus:ring-tertiary" type="checkbox"/>
+</div>
+<!-- Product Grid -->
+<section class="px-6 space-y-12">
+<!-- Product Card 1: Custom Cake -->
+<div class="group">
+<div class="relative bg-surface-container-lowest rounded-lg p-2 shadow-sm hover:shadow-lg transition-shadow duration-300">
+<img class="w-full aspect-square object-cover rounded-2xl mb-4" data-alt="luxury tiered birthday cake with elegant minimalist frosting and fresh floral arrangement in soft studio lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuC_lbyFoLy9NpH-Cf8zDGTX5sNFTsPgrvcfPAItJDOdRem3S-MSeDEaiyXCpZDwsk5MyyOt7NUlmP_jls7eYOu33G5EL59mNxHm6ClUZ4iESV31J7p74JCek2GMtz3krKH9OLMjZxGhmAOOHwYNdYVWUTI945JyM0dyZ0FdseJxH5K-12dNdakwgUgeVT74iBLOnWEGbEUucJoL04gzMUoQuZNoNzAELgn4aJ4MlT-v60MNV2Hc655-jp6eY5wVJJCpO2J8OcNzM2WG"/>
+<div class="absolute top-4 right-4 bg-secondary-fixed/90 backdrop-blur-sm px-3 py-1 rounded-full border border-secondary/20">
+<span class="text-[10px] font-bold text-on-secondary-fixed uppercase tracking-wider">Customisable</span>
+</div>
+<div class="px-2">
+<h3 class="font-headline text-2xl text-on-surface mb-1">Celebration Signature Cake</h3>
+<p class="text-on-surface-variant text-sm mb-3">Our artisan three-layer sponge, handcrafted for your special moments.</p>
+<p class="text-primary font-bold text-lg mb-4">From €45.00</p>
+<!-- Custom Cake Configurator Accordion -->
+<div class="mb-4 overflow-hidden border-t border-outline-variant/20 pt-4">
+<details class="group/config">
+<summary class="flex items-center justify-between cursor-pointer list-none">
+<span class="font-headline italic text-lg flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="cake">cake</span>
+                                        Design Your Custom Cake
+                                    </span>
+<span class="material-symbols-outlined transition-transform group-open/config:rotate-180" data-icon="expand_more">expand_more</span>
+</summary>
+<div class="mt-4 space-y-6 bg-surface-container-low p-4 rounded-xl">
+<div>
+<label class="block text-[10px] uppercase tracking-widest font-bold text-on-surface-variant mb-2">Size Selector</label>
+<div class="grid grid-cols-4 gap-2">
+<button class="py-2 text-xs border border-primary text-primary rounded-lg font-bold bg-primary/5">6"</button>
+<button class="py-2 text-xs border border-outline-variant text-on-surface-variant rounded-lg">8"</button>
+<button class="py-2 text-xs border border-outline-variant text-on-surface-variant rounded-lg">10"</button>
+<button class="py-2 text-xs border border-outline-variant text-on-surface-variant rounded-lg">12"</button>
+</div>
+</div>
+<div class="grid grid-cols-2 gap-3">
+<div>
+<label class="block text-[10px] uppercase tracking-widest font-bold text-on-surface-variant mb-2">Sponge</label>
+<select class="w-full bg-surface-container-lowest border-none rounded-lg text-sm py-2 focus:ring-2 focus:ring-primary">
+<option>Vanilla Bean</option>
+<option>Dark Cocoa</option>
+<option>Lemon Zest</option>
+</select>
+</div>
+<div>
+<label class="block text-[10px] uppercase tracking-widest font-bold text-on-surface-variant mb-2">Filling</label>
+<select class="w-full bg-surface-container-lowest border-none rounded-lg text-sm py-2 focus:ring-2 focus:ring-primary">
+<option>Salted Caramel</option>
+<option>Raspberry Jam</option>
+<option>Cream Cheese</option>
+</select>
+</div>
+</div>
+<div>
+<label class="block text-[10px] uppercase tracking-widest font-bold text-on-surface-variant mb-2">Message on Cake</label>
+<input class="w-full bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-2 focus:ring-primary" placeholder="e.g. Happy Birthday Elena!" type="text"/>
+</div>
+<div class="border-2 border-dashed border-outline-variant/40 rounded-xl p-4 text-center">
+<span class="material-symbols-outlined text-outline-variant mb-1" data-icon="photo_camera">photo_camera</span>
+<p class="text-[10px] text-on-surface-variant">Upload reference image</p>
+</div>
+<div>
+<label class="block text-[10px] uppercase tracking-widest font-bold text-on-surface-variant mb-2">Special Instructions</label>
+<textarea class="w-full bg-surface-container-lowest border-none rounded-lg text-sm focus:ring-2 focus:ring-primary" rows="2"></textarea>
+</div>
+</div>
+</details>
+</div>
+<button class="w-full py-4 rounded-full terracotta-gradient text-white font-label text-xs uppercase tracking-[0.2em] font-bold shadow-lg active:scale-95 transition-transform">
+                            Customise &amp; Add
+                        </button>
+</div>
+</div>
+</div>
+<!-- Product Card 2: Sourdough -->
+<div class="group">
+<div class="relative bg-surface-container-lowest rounded-lg p-2 shadow-sm">
+<img class="w-full aspect-square object-cover rounded-2xl mb-4" data-alt="crusty artisan sourdough loaf sliced on a wooden board with flour dusting and dramatic side lighting" src="https://lh3.googleusercontent.com/aida-public/AB6AXuAXVLd-agULpEyli9uKIUuhTcEfAX7BrG_OmwBzF5f9KYTVzaz-VjKUQQxtM0RZis3LvzSIXz664ecE7T143UZGySz1qF1lhaNoflJ3Ir4VF4YN4URbcoEnD2x2lxstBDSyIBYwkNyosab0_Zxxt_7OGvL3KpUwUVJnbtZ1ivCsww2-zIAAvbOUzaJjHbDHMlMWOFJDRaACY4zRDtQFV2b06VYDyDhWekt1Y66kwfrW14cfuxEvtnyUEGGQAEZtXaIDrEgd_egpj42P"/>
+<div class="absolute top-4 right-4 bg-red-100/90 backdrop-blur-sm px-3 py-1 rounded-full border border-red-200">
+<span class="text-[10px] font-bold text-red-700 uppercase tracking-wider">Only 3 left!</span>
+</div>
+<div class="px-2">
+<h3 class="font-headline text-2xl text-on-surface mb-1">Country Sourdough</h3>
+<p class="text-on-surface-variant text-sm mb-3">Slow-fermented for 48 hours. Craggy crust and an airy, wild crumb.</p>
+<p class="text-primary font-bold text-lg mb-4">€6.50</p>
+<button class="w-full py-4 rounded-full terracotta-gradient text-white font-label text-xs uppercase tracking-[0.2em] font-bold shadow-lg active:scale-95 transition-transform">
+                            Add to Cart
+                        </button>
+</div>
+</div>
+</div>
+<!-- Order Details Section -->
+<div class="bg-surface-container-low rounded-xl p-6 mt-12">
+<div class="flex items-center justify-between mb-6">
+<h2 class="font-headline text-2xl">Order Logistics</h2>
+<div class="flex bg-surface-container-lowest p-1 rounded-full border border-outline-variant/20">
+<button class="px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider terracotta-gradient text-white">Collection</button>
+<button class="px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider text-on-surface-variant">Delivery</button>
+</div>
+</div>
+<!-- Animated Slide-down Mockup (Simulated by content) -->
+<div class="space-y-4">
+<div class="flex items-center gap-3 p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/10">
+<span class="material-symbols-outlined text-primary" data-icon="location_on">location_on</span>
+<div>
+<p class="text-xs font-bold uppercase text-on-surface-variant tracking-widest">Pickup Location</p>
+<p class="text-sm">Main Street Atelier, 42 Artisan Way</p>
+</div>
+</div>
+<div class="flex items-center gap-3 p-4 bg-surface-container-lowest rounded-xl border border-outline-variant/10">
+<span class="material-symbols-outlined text-primary" data-icon="schedule">schedule</span>
+<div>
+<p class="text-xs font-bold uppercase text-on-surface-variant tracking-widest">Select Time</p>
+<p class="text-sm">Tomorrow, 10:30 AM — 11:00 AM</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</main>
+<!-- Order Summary Sticky Footer -->
+<footer class="fixed bottom-0 w-full z-50 bg-white/90 backdrop-blur-xl rounded-t-[3rem] shadow-[0px_-10px_30px_rgba(44,26,14,0.1)] px-8 pt-6 pb-10">
+<div class="space-y-2 mb-6">
+<div class="flex justify-between text-sm text-on-surface-variant">
+<span>Subtotal (2 items)</span>
+<span>€51.50</span>
+</div>
+<div class="flex justify-between text-sm text-tertiary font-medium">
+<span>Loyalty Discount</span>
+<span>-€2.40</span>
+</div>
+<div class="flex justify-between items-end pt-2">
+<span class="text-on-surface-variant uppercase tracking-[0.2em] text-[10px] font-bold">Total Payable</span>
+<span class="text-2xl font-headline font-bold text-primary">€49.10</span>
+</div>
+</div>
+<button class="w-full py-5 rounded-full terracotta-gradient text-white font-label text-sm uppercase tracking-[0.2em] font-bold shadow-xl flex items-center justify-center gap-2 group active:scale-95 transition-transform">
+            Proceed to Payment
+            <span class="material-symbols-outlined group-hover:translate-x-1 transition-transform" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</footer>
+<!-- BottomNavBar (Hidden on desktop, relevant for app-like mobile experience) -->
+<div class="hidden">
+<!-- Replaced by sticky summary footer on this specific transactional screen as per Shell Suppression rules -->
+</div>
+</body></html>
