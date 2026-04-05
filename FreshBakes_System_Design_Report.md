@@ -10,9 +10,9 @@
 ## Table of Contents
 
 1. [Phase 1 — Methodology Evaluation](#phase-1--methodology-evaluation)
-2. [Phase 2 — Feasibility Study](#phase-2--feasibility-study) *(pending)*
-3. [Phase 3 — Requirements Engineering](#phase-3--requirements-engineering) *(pending)*
-4. [Phase 4 — System Design Specification](#phase-4--system-design-specification) *(pending)*
+2. [Phase 2 — Feasibility Study](#phase-2--feasibility-study)
+3. [Phase 3 — Requirements Engineering](#phase-3--requirements-engineering)
+4. [Phase 4 — System Design Specification](#phase-4--system-design-specification)
 
 ---
 
@@ -28,7 +28,7 @@ Two dominant systems analysis methodologies are considered for FreshBakes Bakery
 
 ### 1.2 Structured Comparison Table
 
-| Criterion | 🏗️ Waterfall | 🔄 Agile (Scrum) |
+| Criterion | Waterfall | Agile (Scrum) |
 |---|---|---|
 | **Philosophy** | Linear, sequential phases; each phase completed before the next begins | Iterative sprints (2–4 weeks); continuous delivery and feedback |
 | **Requirements** | Fully defined upfront; changes are costly and discouraged | Requirements evolve across sprints; change is welcomed |
@@ -46,7 +46,7 @@ Two dominant systems analysis methodologies are considered for FreshBakes Bakery
 
 ### 1.3 Specific Constraint Analysis
 
-#### 🏗️ How Waterfall Handles "Inventory Rules"
+#### How Waterfall Handles "Inventory Rules"
 
 FreshBakes' inventory logic is **rule-bound and deterministic**: a confirmed Stripe payment triggers an immediate stock deduction; reorder alerts fire at predefined thresholds; daily stock counts follow a fixed cycle. These are stable, well-understood business rules that can be fully specified upfront in a requirements document.
 
@@ -60,7 +60,7 @@ FreshBakes' inventory logic is **rule-bound and deterministic**: a confirmed Str
 
 ---
 
-#### 🔄 How Agile Handles "Custom Cake Design Iterations"
+#### How Agile Handles "Custom Cake Design Iterations"
 
 Custom cake orders are the **antithesis of fixed requirements** — a customer may not know they want a fondant tier until they see a mockup; the baker may suggest a flavour substitution mid-design; holiday themes change weekly. Requirements here are inherently emergent.
 
@@ -116,13 +116,9 @@ This **hybrid model** is well-supported in the literature (e.g., Boehm & Turner,
 
 ---
 
----
-
----
-
 ## Phase 2 — Feasibility Study (TELOS)
 
-### 2.1 Technical Feasibility ✅
+### 2.1 Technical Feasibility
 
 FreshBakes requires a standard web stack — no exotic infrastructure. Cloud providers (AWS, GCP, or DigitalOcean) offer Cypriot-region hosting with ~99.9% SLA uptime, capable of handling 100+ daily orders without strain. Stripe's payment API is mature, well-documented, and already widely used in Cyprus e-commerce. A React/Next.js frontend + Node.js backend is a proven combination for SME food-ordering platforms. The delivery mobile interface can be delivered as a Progressive Web App (PWA) — eliminating app store overhead. No specialised hardware is needed; bakers and delivery staff require only a smartphone or tablet.
 
@@ -130,7 +126,7 @@ FreshBakes requires a standard web stack — no exotic infrastructure. Cloud pro
 
 ---
 
-### 2.2 Economic Feasibility ✅
+### 2.2 Economic Feasibility
 
 **Setup Cost Breakdown:**
 
@@ -169,7 +165,7 @@ FreshBakes requires a standard web stack — no exotic infrastructure. Cloud pro
 
 ---
 
-### 2.3 Legal Feasibility ✅
+### 2.3 Legal Feasibility
 
 Operating in Cyprus (EU member state), FreshBakes must comply with:
 
@@ -183,7 +179,7 @@ Operating in Cyprus (EU member state), FreshBakes must comply with:
 
 ---
 
-### 2.4 Operational Feasibility ⚠️ (Low Risk)
+### 2.4 Operational Feasibility (Low Risk)
 
 The primary operational risk is **staff adoption**. FreshBakes currently operates on notebooks and spreadsheets — a significant cultural shift to a digital dashboard is expected.
 
@@ -200,7 +196,7 @@ The 2025 Cyprus tourism boom is a *positive* operational factor — tourist cust
 
 ---
 
-### 2.5 Schedule Feasibility ✅
+### 2.5 Schedule Feasibility
 
 Using the recommended Agile (Scrum) approach with 2-week sprints:
 
@@ -223,17 +219,13 @@ A 4-month delivery timeline is realistic for a 2-person development team and ali
 
 | Dimension | Status | Confidence |
 |---|---|---|
-| Technical | ✅ Feasible | High |
-| Economic | ✅ Feasible | High — 3-month payback |
-| Legal | ✅ Feasible | High — standard EU compliance |
-| Operational | ⚠️ Feasible with risk | Medium — staff training required |
-| Schedule | ✅ Feasible | High — 16-week Agile delivery |
+| Technical | Feasible | High |
+| Economic | Feasible | High — 3-month payback |
+| Legal | Feasible | High — standard EU compliance |
+| Operational | Feasible — low risk | Medium — staff training required |
+| Schedule | Feasible | High — 16-week Agile delivery |
 
 > **Overall Verdict: The FreshBakes web system is feasible across all five TELOS dimensions. The project is recommended for immediate initiation**, with operational risk managed through incremental Agile delivery and dedicated staff onboarding sessions.
-
----
-
----
 
 ---
 
@@ -243,7 +235,7 @@ A 4-month delivery timeline is realistic for a 2-person development team and ali
 
 User requirements describe **what the system must allow each actor to do**, written in plain language from the stakeholder's perspective.
 
-#### 👤 Customer
+#### Customer
 
 | ID | User Requirement |
 |---|---|
@@ -258,7 +250,7 @@ User requirements describe **what the system must allow each actor to do**, writ
 | UR-C09 | The customer shall be able to create and manage a personal account |
 | UR-C10 | The customer shall be able to view their order history |
 
-#### 🍞 Baker
+#### Baker
 
 | ID | User Requirement |
 |---|---|
@@ -268,7 +260,7 @@ User requirements describe **what the system must allow each actor to do**, writ
 | UR-B04 | The baker shall be able to flag an order as delayed with a reason |
 | UR-B05 | The baker shall be able to check current stock levels for any ingredient |
 
-#### 🛠️ Admin (Owner)
+#### Admin (Owner)
 
 | ID | User Requirement |
 |---|---|
@@ -279,7 +271,7 @@ User requirements describe **what the system must allow each actor to do**, writ
 | UR-A05 | The admin shall be able to assign delivery orders to delivery staff |
 | UR-A06 | The admin shall be able to generate sales and inventory reports |
 
-#### 🚚 Delivery Staff
+#### Delivery Staff
 
 | ID | User Requirement |
 |---|---|
@@ -355,10 +347,6 @@ This exemplifies Agile's core strength: **requirements are discovered through us
 
 ---
 
----
-
----
-
 ## Phase 4 — System Design Specification
 
 ---
@@ -376,7 +364,7 @@ flowchart LR
     STRIPE(["💳 Stripe"])
     EMAIL(["📧 Email Service"])
 
-    CUST -->|"Order details, Payment"| SYS["🎂 FreshBakes\nWeb System"]
+    CUST -->|"Order details, Payment"| SYS["🎂 FreshBakes Web System"]
     SYS -->|"Confirmation, Order status, Loyalty balance"| CUST
 
     BAKER -->|"Order status updates, Delay flags"| SYS
@@ -411,19 +399,19 @@ flowchart TD
     DS2[("🥐 Inventory Store")]
     DS3[("👥 Customer Store")]
 
-    CUST -->|"Order details"| P1["1.0\nProcess Order"]
-    P1 -->|"Check stock levels"| P2["2.0\nManage Inventory"]
+    CUST -->|"Order details"| P1["1.0 Process Order"]
+    P1 -->|"Check stock levels"| P2["2.0 Manage Inventory"]
     P2 -->|"Stock availability"| P1
-    P1 -->|"Payment request"| P3["3.0\nProcess Payment"]
+    P1 -->|"Payment request"| P3["3.0 Process Payment"]
     P3 <-->|"Payment authorisation / webhook"| STRIPE
-    P3 -->|"Confirmed order"| P4["4.0\nNotify Baker"]
+    P3 -->|"Confirmed order"| P4["4.0 Notify Baker"]
     P3 -->|"Deduct stock"| P2
     P4 -->|"Order queue update"| BAKER
-    BAKER -->|"Status update"| P5["5.0\nTrack & Deliver"]
+    BAKER -->|"Status update"| P5["5.0 Track & Deliver"]
     P5 -->|"Delivery assignment"| DEL
     DEL -->|"Delivery confirmed"| P5
     P5 -->|"Status notification"| CUST
-    P3 -->|"Points transaction"| P6["6.0\nLoyalty Engine"]
+    P3 -->|"Points transaction"| P6["6.0 Loyalty Engine"]
     P6 -->|"Points balance update"| CUST
 
     P1 --- DS1
@@ -439,10 +427,10 @@ Actors: **Customer, Baker, Admin, Delivery Staff**
 
 ```mermaid
 graph LR
-    CUST(("👤\nCustomer"))
-    BAKER(("🍞\nBaker"))
-    ADMIN(("🛠️\nAdmin"))
-    DEL(("🚚\nDelivery\nStaff"))
+    CUST(("👤 Customer"))
+    BAKER(("🍞 Baker"))
+    ADMIN(("🛠️ Admin"))
+    DEL(("🚚 Delivery Staff"))
 
     subgraph FreshBakes Web System
         UC1(["Browse Menu"])
@@ -583,24 +571,24 @@ This flowchart traces the complete journey of an order, including the critical *
 ```mermaid
 flowchart TD
     A(["👤 Customer Places Order"]) --> B["System Validates Order Details"]
-    B --> C{"All Items\nIn Stock?"}
+    B --> C{"All Items In Stock?"}
 
     C -->|No| D["Display Out-of-Stock Message"]
     D --> E["Suggest Alternatives / Remove Item"]
-    E --> F{"Customer\nAccepts?"}
+    E --> F{"Customer Accepts?"}
     F -->|No| G(["❌ Order Cancelled"])
     F -->|Yes| C
 
-    C -->|Yes| H["Calculate Total\n(inc. Loyalty Discount)"]
+    C -->|Yes| H["Calculate Total (inc. Loyalty Discount)"]
     H --> I["Redirect to Stripe Checkout"]
-    I --> J{"Payment\nSuccessful?"}
+    I --> J{"Payment Successful?"}
 
     J -->|No| K["Display Payment Error"]
     K --> L{"Retry?"}
     L -->|Yes| I
     L -->|No| G
 
-    J -->|Yes| M["Stripe Webhook Received\n(payment_intent.succeeded)"]
+    J -->|Yes| M["Stripe Webhook Received (payment_intent.succeeded)"]
     M --> N["Deduct Inventory Atomically"]
     N --> O["Generate Unique Order Reference"]
     O --> P["Award Loyalty Points to Customer"]
@@ -611,11 +599,11 @@ flowchart TD
     S -->|"Collection"| T["Baker Prepares Order"]
     S -->|"Delivery"| T
 
-    T --> U{"Baker Marks\nOrder Ready?"}
-    U -->|"Yes – Collection"| V["Notify Customer:\nReady for Collection"]
+    T --> U{"Baker Marks Order Ready?"}
+    U -->|"Yes – Collection"| V["Notify Customer: Ready for Collection"]
     U -->|"Yes – Delivery"| W["Assign to Delivery Staff"]
 
-    W --> X["Staff Completes Delivery\n& Marks Delivered"]
+    W --> X["Staff Completes Delivery & Marks Delivered"]
     V --> Y(["✅ Order Fulfilled"])
     X --> Y
 ```
@@ -632,12 +620,12 @@ flowchart TD
 
 ```
 ┌─────────────────────────────────────────────────┐
-│  🎂 FreshBakes          [Login] [Cart 🛒 (2)]   │
+│  FreshBakes               [Login] [Cart (2)]    │
 ├─────────────────────────────────────────────────┤
-│  [ Search menu... 🔍 ]                          │
+│  [ Search menu... ]                             │
 │  Categories: [All] [Cakes] [Pastries] [Custom]  │
 ├──────────────┬──────────────┬───────────────────┤
-│ 🖼 Product   │ 🖼 Product   │ 🖼 Product        │
+│ [img]        │ [img]        │ [img]             │
 │ Croissant    │ Birthday Cake│ Sourdough Loaf    │
 │ €2.50        │ From €35.00  │ €6.00             │
 │ [Add to Cart]│ [Customise →]│ [Add to Cart]     │
@@ -647,15 +635,15 @@ flowchart TD
 │  Sponge:  [Vanilla ▼]                           │
 │  Filling: [Buttercream ▼]                       │
 │  Message: [___________________________]         │
-│  Upload reference image: [📎 Choose file]       │
+│  Upload reference image: [Attach file]          │
 │  Special instructions: [___________________]    │
 ├─────────────────────────────────────────────────┤
 │  ORDER TYPE:  ● Delivery   ○ Collection         │
 │  Delivery address: [_______________________]    │
-│  Required by: [📅 Date picker]  [🕐 Time]       │
+│  Required by: [Date picker]  [Time]             │
 ├─────────────────────────────────────────────────┤
-│  🎁 Loyalty Points: 240 pts available           │
-│  [ ✅ Apply 200 pts = -€2.00 discount ]         │
+│  Loyalty Points: 240 pts available              │
+│  [ Apply 200 pts = -€2.00 discount ]            │
 ├─────────────────────────────────────────────────┤
 │  Subtotal: €37.50    Discount: -€2.00           │
 │  TOTAL: €35.50                                  │
@@ -676,28 +664,28 @@ flowchart TD
 
 ```
 ┌─────────────────────────────────────────────────┐
-│  🍞 Baker Dashboard — Good morning, Yianna!     │
-│  📅 Saturday 05 Apr  |  🕗 08:14               │
+│  Baker Dashboard — Good morning, Yianna!        │
+│  Saturday 05 Apr  |  08:14                      │
 ├───────────────┬────────────────┬────────────────┤
-│ 📋 QUEUE      │ ⚠️ STOCK ALERTS│ ✅ COMPLETED   │
+│ QUEUE         │ STOCK ALERTS   │ COMPLETED      │
 │ 14 orders     │ 3 items low    │ 7 today        │
 ├───────────────┴────────────────┴────────────────┤
 │  ACTIVE ORDER QUEUE (auto-refreshes 30s)        │
 │ ┌─────────────────────────────────────────────┐ │
-│ │ #FB-2041  |  🕗 08:00  |  ⚡ URGENT        │ │
+│ │ #FB-2041  |  08:00  |  URGENT               │ │
 │ │ 2x Croissant, 1x Custom Cake (Vanilla/8")  │ │
-│ │ Note: "Happy Birthday Elena 🎂"            │ │
+│ │ Note: "Happy Birthday Elena"               │ │
 │ │ Collection: 10:30am                        │ │
-│ │ [▶ Start Preparing]  [⚠ Flag Delay]        │ │
+│ │ [Start Preparing]  [Flag Delay]            │ │
 │ └─────────────────────────────────────────────┘ │
 │ ┌─────────────────────────────────────────────┐ │
-│ │ #FB-2042  |  🕗 08:05  |  🚚 DELIVERY      │ │
+│ │ #FB-2042  |  08:05  |  DELIVERY             │ │
 │ │ 1x Sourdough, 3x Almond Croissant          │ │
 │ │ Delivery by: 11:00am                       │ │
-│ │ [▶ Start Preparing]                        │ │
+│ │ [Start Preparing]                          │ │
 │ └─────────────────────────────────────────────┘ │
 ├─────────────────────────────────────────────────┤
-│  ⚠️ LOW STOCK ALERTS                           │
+│  LOW STOCK ALERTS                               │
 │  • Almond Flour — 200g remaining  [Notify Admin]│
 │  • Eggs — 6 remaining             [Notify Admin]│
 └─────────────────────────────────────────────────┘
@@ -716,30 +704,30 @@ flowchart TD
 
 ```
 ┌─────────────────────────┐
-│ 🚚 FreshBakes Delivery  │
+│ FreshBakes Delivery     │
 │ Nikos — Sat 05 Apr      │
 ├─────────────────────────┤
 │ TODAY'S ROUTE  (4 stops)│
 │ ─────────────────────── │
-│ ✅ 1. Makarios Ave 12   │
+│ [Done] 1. Makarios Ave 12│
 │    FB-2038 — Delivered  │
 │                         │
-│ ▶ 2. Ledra St 45  ← NOW │
+│ > 2. Ledra St 45 [NOW]  │
 │    FB-2041              │
-│    Maria Georgiou        │
-│    📞 99-123456          │
-│    🎂 Custom cake – FRAGILE│
+│    Maria Georgiou       │
+│    Tel: 99-123456       │
+│    Custom cake – FRAGILE│
 │                         │
-│    [📍 Navigate]        │
-│    [✅ Mark Delivered]  │
+│    [Navigate]           │
+│    [Mark Delivered]     │
 │ ─────────────────────── │
-│ ⏳ 3. Athalassa Ave 8   │
+│ 3. Athalassa Ave 8      │
 │    FB-2043              │
 │                         │
-│ ⏳ 4. Nicosia Mall Gate2│
+│ 4. Nicosia Mall Gate 2  │
 │    FB-2045              │
 ├─────────────────────────┤
-│ [☰ All Orders] [📞 HQ] │
+│ [All Orders] [Call HQ]  │
 └─────────────────────────┘
 ```
 
