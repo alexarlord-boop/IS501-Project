@@ -1,0 +1,40 @@
+\contentsline {chapter}{\numberline {1}Phase 1 --- Methodology Evaluation}{3}{chapter.1}%
+\contentsline {section}{\numberline {1.1}Overview}{3}{section.1.1}%
+\contentsline {section}{\numberline {1.2}Structured Comparison}{3}{section.1.2}%
+\contentsline {section}{\numberline {1.3}Specific Constraint Analysis}{4}{section.1.3}%
+\contentsline {subsection}{\numberline {1.3.1}How Waterfall Handles ``Inventory Rules''}{4}{subsection.1.3.1}%
+\contentsline {subsection}{\numberline {1.3.2}How Agile Handles ``Custom Cake Design Iterations''}{4}{subsection.1.3.2}%
+\contentsline {section}{\numberline {1.4}Comparative Illustration}{5}{section.1.4}%
+\contentsline {section}{\numberline {1.5}Justified Recommendation: Hybrid Agile-First Approach}{5}{section.1.5}%
+\contentsline {chapter}{\numberline {2}Phase 2 --- Feasibility Study (TELOS)}{7}{chapter.2}%
+\contentsline {section}{\numberline {2.1}Technical Feasibility}{7}{section.2.1}%
+\contentsline {section}{\numberline {2.2}Economic Feasibility}{7}{section.2.2}%
+\contentsline {section}{\numberline {2.3}Legal Feasibility}{8}{section.2.3}%
+\contentsline {section}{\numberline {2.4}Operational Feasibility (Low Risk)}{9}{section.2.4}%
+\contentsline {section}{\numberline {2.5}Schedule Feasibility}{9}{section.2.5}%
+\contentsline {section}{\numberline {2.6}TELOS Summary}{10}{section.2.6}%
+\contentsline {chapter}{\numberline {3}Phase 3 --- Requirements Engineering}{11}{chapter.3}%
+\contentsline {section}{\numberline {3.1}User Requirements}{11}{section.3.1}%
+\contentsline {subsection}{\numberline {3.1.1}Customer}{11}{subsection.3.1.1}%
+\contentsline {subsection}{\numberline {3.1.2}Baker}{12}{subsection.3.1.2}%
+\contentsline {subsection}{\numberline {3.1.3}Admin (Owner)}{12}{subsection.3.1.3}%
+\contentsline {subsection}{\numberline {3.1.4}Delivery Staff}{12}{subsection.3.1.4}%
+\contentsline {section}{\numberline {3.2}System Requirements}{13}{section.3.2}%
+\contentsline {subsection}{\numberline {3.2.1}Functional System Requirements}{13}{subsection.3.2.1}%
+\contentsline {subsection}{\numberline {3.2.2}Non-Functional System Requirements}{13}{subsection.3.2.2}%
+\contentsline {section}{\numberline {3.3}Why Agile is Superior for Delivery Route Optimisation}{14}{section.3.3}%
+\contentsline {chapter}{\numberline {4}Phase 4 --- System Design Specification}{16}{chapter.4}%
+\contentsline {section}{\numberline {4.1}Context Diagram (DFD Level 0)}{16}{section.4.1}%
+\contentsline {section}{\numberline {4.2}DFD Level 1 --- Order Flow}{16}{section.4.2}%
+\contentsline {section}{\numberline {4.3}Use Case Diagram}{16}{section.4.3}%
+\contentsline {section}{\numberline {4.4}Entity Relationship Diagram (ERD)}{17}{section.4.4}%
+\contentsline {section}{\numberline {4.5}Order Fulfilment Flowchart}{17}{section.4.5}%
+\contentsline {section}{\numberline {4.6}UI Wireframe Descriptions}{18}{section.4.6}%
+\contentsline {subsection}{\numberline {4.6.1}(a) Customer Order Form}{18}{subsection.4.6.1}%
+\contentsline {subsection}{\numberline {4.6.2}(b) Baker Dashboard}{19}{subsection.4.6.2}%
+\contentsline {subsection}{\numberline {4.6.3}(c) Mobile Delivery App (PWA)}{20}{subsection.4.6.3}%
+\contentsline {section}{\numberline {4.7}Release Plan}{21}{section.4.7}%
+\contentsline {subsection}{\numberline {4.7.1}Phase 1 --- MVP (Weeks 1--8)}{21}{subsection.4.7.1}%
+\contentsline {subsection}{\numberline {4.7.2}Phase 2 --- Advanced Features (Weeks 9--16)}{21}{subsection.4.7.2}%
+\contentsline {section}{\numberline {4.8}Design Effectiveness Assessment}{22}{section.4.8}%
+\contentsfinish 

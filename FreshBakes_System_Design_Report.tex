@@ -1,0 +1,971 @@
+\documentclass[12pt, a4paper]{report}
+
+% -- Packages ------------------------------------------------------------------
+\usepackage[a4paper, margin=2.5cm]{geometry}
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{microtype}
+\usepackage{parskip}
+\usepackage{setspace}
+\usepackage{titlesec}
+\usepackage{titletoc}
+\usepackage{fancyhdr}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{multirow}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usepackage{float}
+\usepackage{caption}
+\usepackage{listings}
+\usepackage{verbatim}
+\usepackage{mdframed}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{csquotes}
+\usepackage{amssymb}
+
+% -- Page geometry fix for fancyhdr -------------------------------------------
+\setlength{\headheight}{14pt}
+
+% -- Colours -------------------------------------------------------------------
+\definecolor{terracotta}{RGB}{196, 98, 45}
+\definecolor{lightcream}{RGB}{245, 230, 200}
+\definecolor{codegray}{RGB}{248, 248, 248}
+\definecolor{coderule}{RGB}{200, 200, 200}
+\definecolor{verdictgreen}{RGB}{74, 124, 89}
+
+% -- Typography ----------------------------------------------------------------
+\onehalfspacing
+
+\titleformat{\chapter}[display]
+  {\normalfont\Large\bfseries\color{terracotta}}
+  {}{0pt}{\Large}
+\titlespacing*{\chapter}{0pt}{-20pt}{20pt}
+
+\titleformat{\section}
+  {\normalfont\large\bfseries\color{terracotta}}
+  {\thesection}{1em}{}
+
+\titleformat{\subsection}
+  {\normalfont\normalsize\bfseries}
+  {\thesubsection}{1em}{}
+
+\titleformat{\subsubsection}
+  {\normalfont\normalsize\itshape}
+  {\thesubsubsection}{1em}{}
+
+% -- Headers & Footers ---------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\small\textcolor{terracotta}{FreshBakes Bakery --- System Design Specification}}
+\fancyhead[R]{\small IS501 Project}
+\fancyfoot[C]{\thepage}
+\renewcommand{\headrulewidth}{0.4pt}
+
+% -- Listing style (for code/mermaid blocks) -----------------------------------
+\lstdefinestyle{mermaidstyle}{
+  backgroundcolor=\color{codegray},
+  basicstyle=\ttfamily\small,
+  breaklines=true,
+  frame=single,
+  rulecolor=\color{coderule},
+  xleftmargin=10pt,
+  xrightmargin=10pt,
+  aboveskip=8pt,
+  belowskip=8pt,
+}
+
+\lstdefinestyle{wireframe}{
+  backgroundcolor=\color{codegray},
+  basicstyle=\ttfamily\footnotesize,
+  breaklines=false,
+  frame=single,
+  rulecolor=\color{coderule},
+  xleftmargin=10pt,
+  xrightmargin=10pt,
+  aboveskip=8pt,
+  belowskip=8pt,
+}
+
+% -- Verdict box ---------------------------------------------------------------
+\newmdenv[
+  linecolor=terracotta,
+  backgroundcolor=lightcream!40,
+  linewidth=1pt,
+  leftmargin=0pt,
+  rightmargin=0pt,
+  innerleftmargin=10pt,
+  innerrightmargin=10pt,
+  innertopmargin=6pt,
+  innerbottommargin=6pt,
+]{verdictbox}
+
+% -- Figure placeholder --------------------------------------------------------
+\newcommand{\diagramplaceholder}[2]{%
+  \begin{figure}[H]
+    \centering
+    \begin{mdframed}[linecolor=coderule, backgroundcolor=codegray,
+                     innerleftmargin=12pt, innerrightmargin=12pt,
+                     innertopmargin=20pt, innerbottommargin=20pt]
+      \centering
+      \textit{\textcolor{gray}{[Insert rendered diagram image here]}}\\[6pt]
+      \texttt{\small #1}
+    \end{mdframed}
+    \caption{#2}
+    \label{fig:#1}
+  \end{figure}
+}
+
+% -- Table column types --------------------------------------------------------
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{C}[1]{>{\centering\arraybackslash}p{#1}}
+
+% ══════════════════════════════════════════════════════════════════════════════
+\begin{document}
+
+% -- Title Page ----------------------------------------------------------------
+\begin{titlepage}
+  \centering
+  \vspace*{2cm}
+  {\Huge\bfseries\color{terracotta} FreshBakes Bakery\par}
+  \vspace{0.5cm}
+  {\Large System Design Specification\par}
+  \vspace{1cm}
+  \rule{0.6\textwidth}{0.4pt}\par
+  \vspace{1cm}
+  {\large IS501 Project Report\par}
+  {\large Neapolis University Pafos, Cyprus\par}
+  \vspace{2cm}
+  \begin{mdframed}[linecolor=terracotta, backgroundcolor=lightcream!30,
+                   innerleftmargin=16pt, innerrightmargin=16pt,
+                   innertopmargin=12pt, innerbottommargin=12pt]
+    \textbf{Case Study:} FreshBakes Bakery is a family-owned shop in Nicosia,
+    Cyprus, specialising in fresh pastries, cakes, and custom orders. The owner
+    seeks a web-based system to manage customer orders, inventory, payments,
+    and delivery scheduling in response to growing online demand and the
+    post-2025 tourism boom.
+  \end{mdframed}
+  \vfill
+  {\small Academic Year 2025--2026}
+\end{titlepage}
+
+% -- Table of Contents ---------------------------------------------------------
+\tableofcontents
+\newpage
+
+% ══════════════════════════════════════════════════════════════════════════════
+\chapter{Phase 1 --- Methodology Evaluation}
+
+\section{Overview}
+
+Two dominant systems analysis methodologies are considered for FreshBakes
+Bakery's web-based ordering platform: the \textbf{traditional Waterfall model}
+and the \textbf{Agile (Scrum) framework}. Each carries distinct strengths
+shaped by their core philosophy --- Waterfall enforces sequential discipline;
+Agile embraces adaptive iteration.
+
+\section{Structured Comparison}
+
+\begin{longtable}{L{3cm} L{5.5cm} L{5.5cm}}
+  \toprule
+  \textbf{Criterion} & \textbf{Waterfall} & \textbf{Agile (Scrum)} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+
+  \textbf{Philosophy}
+    & Linear, sequential phases; each phase completed before the next begins
+    & Iterative sprints (2--4 weeks); continuous delivery and feedback \\[4pt]
+
+  \textbf{Requirements}
+    & Fully defined upfront; changes are costly and discouraged
+    & Requirements evolve across sprints; change is welcomed \\[4pt]
+
+  \textbf{Change Management}
+    & Formal change-control process; high cost of late changes
+    & Lightweight; changes incorporated in next sprint backlog \\[4pt]
+
+  \textbf{Customer Involvement}
+    & Heavy at start and end; minimal during development
+    & Continuous --- Product Owner reviews every sprint demo \\[4pt]
+
+  \textbf{Testing}
+    & Deferred to a dedicated Testing phase near project end
+    & Embedded in every sprint (Test-Driven Development encouraged) \\[4pt]
+
+  \textbf{Documentation}
+    & Comprehensive and mandatory at every phase gate
+    & Lightweight --- just enough to support the sprint \\[4pt]
+
+  \textbf{Team Structure}
+    & Role-siloed (Analysts $\rightarrow$ Designers $\rightarrow$ Developers $\rightarrow$ Testers)
+    & Cross-functional squads; shared ownership \\[4pt]
+
+  \textbf{Risk Profile}
+    & High --- failures discovered late; rework is expensive
+    & Low --- risks surfaced and addressed sprint-by-sprint \\[4pt]
+
+  \textbf{Delivery}
+    & Single release at project end
+    & Incremental working software after each sprint \\[4pt]
+
+  \textbf{Predictability}
+    & High timeline/cost predictability if scope is stable
+    & Variable scope; predictable velocity per sprint \\[4pt]
+
+  \textbf{Best Suited For}
+    & Regulatory systems, embedded systems, fixed-scope projects
+    & Customer-facing apps, evolving UX, start-ups, R\&D \\
+
+\end{longtable}
+
+\section{Specific Constraint Analysis}
+
+\subsection{How Waterfall Handles ``Inventory Rules''}
+
+FreshBakes' inventory logic is \textbf{rule-bound and deterministic}: a
+confirmed Stripe payment triggers an immediate stock deduction; reorder alerts
+fire at predefined thresholds; daily stock counts follow a fixed cycle. These
+are stable, well-understood business rules that can be fully specified upfront
+in a requirements document.
+
+\textbf{Waterfall is appropriate here} because:
+\begin{itemize}[noitemsep]
+  \item The business logic does not evolve --- ``deduct 2 croissants per
+        order'' is not subject to customer feedback.
+  \item A complete data model (SKU, quantity, threshold) can be designed
+        once and built without iteration.
+  \item Rigorous documentation of inventory rules supports future audits
+        and staff training.
+  \item Any deviation during development is caught in a formal testing
+        phase against pre-written acceptance criteria.
+\end{itemize}
+
+\textit{Weakness:} If a new inventory category (e.g., seasonal ingredient
+tracking) is introduced post-design, Waterfall forces a costly change-request
+cycle.
+
+\subsection{How Agile Handles ``Custom Cake Design Iterations''}
+
+Custom cake orders are the \textbf{antithesis of fixed requirements} --- a
+customer may not know they want a fondant tier until they see a mockup; the
+baker may suggest a flavour substitution mid-design; holiday themes change
+weekly. Requirements here are inherently emergent.
+
+\textbf{Agile (Scrum) is superior here} because:
+\begin{itemize}[noitemsep]
+  \item Sprint 1 can deliver a basic order form (flavour, size, message);
+        customer feedback refines Sprint 2 into a visual design picker.
+  \item The Product Owner (bakery owner) demos each sprint and redirects
+        based on real customer reactions.
+  \item A/B testing of UI layouts for the cake configurator is natural
+        within a sprint.
+  \item Features like 3D cake previews or decorator collaboration can be
+        added to a future sprint backlog without disrupting current work.
+\end{itemize}
+
+\textit{Weakness:} Without discipline, scope creep risks delaying the core
+ordering system. A well-maintained backlog and sprint velocity tracking
+mitigate this.
+
+\section{Comparative Illustration}
+
+\begin{lstlisting}[style=wireframe]
+WATERFALL (Inventory Module)         AGILE (Custom Cake Module)
+-----------------------------        ------------------------------
+ Requirements locked in Week 1        Sprint 1: Basic order form
+         |                                    | [Demo -> Feedback]
+ System Design (ERD, DFDs)            Sprint 2: Flavour/size picker
+         |                                    | [Demo -> Feedback]
+ Build inventory deduction logic      Sprint 3: Image upload + preview
+         |                                    | [Demo -> Feedback]
+ Integration test (Stripe hook)       Sprint 4: Baker approval workflow
+         |                                    |
+ Deploy -- no mid-build surprises    Release -- shaped by real users
+\end{lstlisting}
+
+\section{Justified Recommendation: Hybrid Agile-First Approach}
+
+\begin{verdictbox}
+\textbf{Recommended Methodology:} Agile (Scrum) with Waterfall-style
+governance for the Inventory \& Payment modules.
+\end{verdictbox}
+
+\medskip
+\textbf{Rationale:} FreshBakes is a \textbf{small business undergoing digital
+transformation} in a dynamic market (post-2025 tourism surge, evolving customer
+expectations). The majority of the system benefits enormously from iterative
+refinement with real user input. However, the \textbf{inventory and payment
+subsystems} have fixed, auditable rules that justify upfront specification.
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{L{4cm} L{3.5cm} X}
+    \toprule
+    \textbf{Module} & \textbf{Approach} & \textbf{Justification} \\
+    \midrule
+    Inventory management    & Waterfall (Sprint 0) & Fixed rules, auditable, no UX iteration needed \\
+    Stripe payment          & Waterfall (Sprint 0) & Regulatory, deterministic, tested against spec \\
+    Online ordering / UX    & Agile Scrum          & Customer-driven, evolving, needs real feedback \\
+    Custom cake configurator& Agile Scrum          & Inherently iterative, high UX complexity \\
+    Delivery route scheduling& Agile Scrum         & Optimisation logic improves with usage data \\
+    Loyalty programme       & Agile Scrum          & Business rules will evolve with promotion cycles \\
+    Admin dashboard         & Agile Scrum          & Baker/admin needs discovered through use \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Recommended methodology per system module}
+\end{table}
+
+This \textbf{hybrid model} is well-supported in the literature
+(e.g., Boehm \& Turner, 2003) and is pragmatic for a small team operating
+under budget and timeline constraints.
+
+% ══════════════════════════════════════════════════════════════════════════════
+\chapter{Phase 2 --- Feasibility Study (TELOS)}
+
+\section{Technical Feasibility}
+
+FreshBakes requires a standard web stack --- no exotic infrastructure. Cloud
+providers (AWS, GCP, or DigitalOcean) offer Cypriot-region hosting with
+\textasciitilde99.9\% SLA uptime, capable of handling 100+ daily orders
+without strain. Stripe's payment API is mature, well-documented, and already
+widely used in Cyprus e-commerce. A React/Next.js frontend + Node.js backend
+is a proven combination for SME food-ordering platforms. The delivery mobile
+interface can be delivered as a Progressive Web App (PWA) --- eliminating
+app store overhead. No specialised hardware is needed; bakers and delivery
+staff require only a smartphone or tablet.
+
+\begin{verdictbox}
+\textbf{Verdict:} Technically feasible with low complexity.
+\end{verdictbox}
+
+\section{Economic Feasibility}
+
+\subsection*{Setup Cost Breakdown}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{X r}
+    \toprule
+    \textbf{Item} & \textbf{Cost} \\
+    \midrule
+    Development (web + mobile PWA)   & \euro{}3,500 \\
+    Cloud hosting setup + domain     & \euro{}300   \\
+    Stripe integration \& testing    & \euro{}200   \\
+    Staff training \& documentation  & \euro{}600   \\
+    Contingency (10\%)               & \euro{}400   \\
+    \midrule
+    \textbf{Total Setup Cost}        & \textbf{\euro{}5,000} \\
+    \bottomrule
+  \end{tabularx}
+  \caption{System setup cost breakdown}
+\end{table}
+
+\subsection*{Projected Annual Savings}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{X r}
+    \toprule
+    \textbf{Savings Source} & \textbf{Estimated Annual Value} \\
+    \midrule
+    Eliminated order mix-ups \& reprints  & \euro{}3,000  \\
+    Reduced stockouts (better inventory)  & \euro{}4,500  \\
+    Online orders from tourism traffic    & \euro{}7,000  \\
+    Staff time savings (manual records)   & \euro{}3,500  \\
+    Loyalty programme repeat business     & \euro{}2,000  \\
+    \midrule
+    \textbf{Total Projected Annual Savings} & \textbf{\euro{}20,000} \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Projected annual savings from system implementation}
+\end{table}
+
+\subsection*{Cost-Benefit Analysis (3-Year Projection)}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{L{1.5cm} r r r r}
+    \toprule
+    \textbf{Year} & \textbf{Savings} & \textbf{Operating Costs} & \textbf{Net Benefit} & \textbf{Cumulative} \\
+    \midrule
+    Year 0 & ---        & \euro{}5,000 (setup) & -\euro{}5,000  & -\euro{}5,000  \\
+    Year 1 & \euro{}20,000 & \euro{}1,200      & \euro{}18,800  & \textbf{+\euro{}13,800} \\
+    Year 2 & \euro{}20,000 & \euro{}1,200      & \euro{}18,800  & +\euro{}32,600 \\
+    Year 3 & \euro{}20,000 & \euro{}1,200      & \euro{}18,800  & +\euro{}51,400 \\
+    \bottomrule
+  \end{tabularx}
+  \caption{3-year cost-benefit projection}
+\end{table}
+
+\begin{verdictbox}
+\textbf{Payback Period: \textasciitilde3 months. ROI over 3 years: +928\%.}\\
+\textbf{Verdict:} Highly economically feasible.
+\end{verdictbox}
+
+\section{Legal Feasibility}
+
+Operating in Cyprus (EU member state), FreshBakes must comply with:
+
+\begin{itemize}[noitemsep]
+  \item \textbf{GDPR (Regulation 2016/679):} Customer data must be collected
+        with consent, stored securely, and deletable on request. The system
+        must include a cookie consent banner and a privacy policy.
+  \item \textbf{PCI DSS:} By delegating card handling entirely to Stripe
+        (no card data stored server-side), FreshBakes remains out of PCI DSS
+        scope --- a significant legal and operational simplification.
+  \item \textbf{Cyprus Consumer Protection Law (L.81(I)/2013):} Order
+        confirmation emails, return/refund policies, and transparent pricing
+        are required for online sales.
+  \item \textbf{eIDAS \& Electronic Signatures:} Order confirmations via
+        email constitute valid electronic records under EU law.
+  \item \textbf{Food Business Registration:} Already assumed compliant
+        (existing bakery); the digital system introduces no new regulatory
+        category.
+\end{itemize}
+
+\begin{verdictbox}
+\textbf{Verdict:} Legally feasible with standard compliance measures.
+\end{verdictbox}
+
+\section{Operational Feasibility (Low Risk)}
+
+The primary operational risk is \textbf{staff adoption}. FreshBakes currently
+operates on notebooks and spreadsheets --- a significant cultural shift to a
+digital dashboard is expected.
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{L{3cm} L{4.5cm} X}
+    \toprule
+    \textbf{Stakeholder} & \textbf{Challenge} & \textbf{Mitigation} \\
+    \midrule
+    Owner/Admin      & Learning admin dashboard          & Dedicated onboarding session; simple UI design \\
+    Bakers           & Viewing order queue digitally     & Large-font Baker Dashboard (tablet-optimised); training in Sprint 4 \\
+    Delivery Staff   & Using mobile delivery app         & PWA on personal phones; GPS navigation familiar from Google Maps \\
+    Customers        & Online ordering adoption          & Intuitive UX; tourism visitors already expect online ordering \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Operational risk mitigation by stakeholder}
+\end{table}
+
+The 2025 Cyprus tourism boom is a \textit{positive} operational factor ---
+tourist customers actively prefer digital ordering over phone calls and have
+higher average order values.
+
+\begin{verdictbox}
+\textbf{Verdict:} Operationally feasible with a structured change-management
+plan.
+\end{verdictbox}
+
+\section{Schedule Feasibility}
+
+Using the recommended Agile (Scrum) approach with 2-week sprints:
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{L{5cm} L{2.5cm} X}
+    \toprule
+    \textbf{Phase} & \textbf{Duration} & \textbf{Key Deliverables} \\
+    \midrule
+    Sprint 0 (Foundation)          & Weeks 1--2  & DB schema, Stripe integration, inventory API \\
+    Sprint 1--2 (MVP Ordering)     & Weeks 3--6  & Online order form, baker dashboard, email confirmations \\
+    Sprint 3--4 (Payments)         & Weeks 7--10 & Stripe checkout, live stock deduction, admin dashboard \\
+    Sprint 5--6 (Delivery/Loyalty) & Weeks 11--14& Delivery PWA, route assignments, loyalty points \\
+    UAT \& Soft Launch             & Weeks 15--16& Real-order testing, bug fixes, staff training \\
+    \textbf{Full Go-Live}          & \textbf{Week 16} & \textbf{\textasciitilde4 months total} \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Agile sprint delivery schedule}
+\end{table}
+
+\begin{verdictbox}
+\textbf{Verdict:} Schedule feasible --- go-live achievable within one business
+quarter.
+\end{verdictbox}
+
+\section{TELOS Summary}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{L{2.5cm} L{3.5cm} X}
+    \toprule
+    \textbf{Dimension} & \textbf{Status} & \textbf{Confidence} \\
+    \midrule
+    Technical    & Feasible           & High \\
+    Economic     & Feasible           & High --- 3-month payback \\
+    Legal        & Feasible           & High --- standard EU compliance \\
+    Operational  & Feasible, low risk & Medium --- staff training required \\
+    Schedule     & Feasible           & High --- 16-week Agile delivery \\
+    \bottomrule
+  \end{tabularx}
+  \caption{TELOS feasibility summary}
+\end{table}
+
+\begin{verdictbox}
+\textbf{Overall Verdict:} The FreshBakes web system is feasible across all
+five TELOS dimensions. The project is recommended for immediate initiation,
+with operational risk managed through incremental Agile delivery and dedicated
+staff onboarding sessions.
+\end{verdictbox}
+
+% ══════════════════════════════════════════════════════════════════════════════
+\chapter{Phase 3 --- Requirements Engineering}
+
+\section{User Requirements}
+
+User requirements describe \textbf{what the system must allow each actor to
+do}, written in plain language from the stakeholder's perspective.
+
+\subsection{Customer}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{L{1.5cm} X}
+    \toprule
+    \textbf{ID} & \textbf{User Requirement} \\
+    \midrule
+    UR-C01 & The customer shall be able to browse the full product menu with photos and prices \\
+    UR-C02 & The customer shall be able to place an online order for collection or delivery \\
+    UR-C03 & The customer shall be able to customise cake orders (size, flavour, message, decoration) \\
+    UR-C04 & The customer shall be able to pay securely online via card (Stripe) \\
+    UR-C05 & The customer shall receive an order confirmation email immediately after payment \\
+    UR-C06 & The customer shall be able to track the real-time status of their order \\
+    UR-C07 & The customer shall be able to earn loyalty points per purchase and view their balance \\
+    UR-C08 & The customer shall be able to redeem loyalty points as a discount on future orders \\
+    UR-C09 & The customer shall be able to create and manage a personal account \\
+    UR-C10 & The customer shall be able to view their order history \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Customer user requirements}
+\end{table}
+
+\subsection{Baker}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{L{1.5cm} X}
+    \toprule
+    \textbf{ID} & \textbf{User Requirement} \\
+    \midrule
+    UR-B01 & The baker shall be able to view all incoming orders in a prioritised queue \\
+    UR-B02 & The baker shall be able to update the status of an order (e.g., Preparing $\rightarrow$ Ready) \\
+    UR-B03 & The baker shall be able to view the full specification of custom cake orders \\
+    UR-B04 & The baker shall be able to flag an order as delayed with a reason \\
+    UR-B05 & The baker shall be able to check current stock levels for any ingredient \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Baker user requirements}
+\end{table}
+
+\subsection{Admin (Owner)}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{L{1.5cm} X}
+    \toprule
+    \textbf{ID} & \textbf{User Requirement} \\
+    \midrule
+    UR-A01 & The admin shall be able to add, edit, and remove products from the menu \\
+    UR-A02 & The admin shall be able to manage inventory levels and set reorder thresholds \\
+    UR-A03 & The admin shall be able to view a dashboard of daily orders, revenue, and stock alerts \\
+    UR-A04 & The admin shall be able to manage customer accounts and loyalty point balances \\
+    UR-A05 & The admin shall be able to assign delivery orders to delivery staff \\
+    UR-A06 & The admin shall be able to generate sales and inventory reports \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Admin user requirements}
+\end{table}
+
+\subsection{Delivery Staff}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{L{1.5cm} X}
+    \toprule
+    \textbf{ID} & \textbf{User Requirement} \\
+    \midrule
+    UR-D01 & The delivery staff shall be able to view their assigned deliveries for the day \\
+    UR-D02 & The delivery staff shall be able to view customer address and contact details per delivery \\
+    UR-D03 & The delivery staff shall be able to mark a delivery as completed \\
+    UR-D04 & The delivery staff shall be able to access a suggested route via the mobile app \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Delivery staff user requirements}
+\end{table}
+
+\section{System Requirements}
+
+System requirements define \textbf{how the system must behave technically} to
+satisfy the user requirements above. These are measurable and testable.
+
+\subsection{Functional System Requirements}
+
+\begin{longtable}{L{1.8cm} L{9cm} L{2.5cm}}
+  \toprule
+  \textbf{ID} & \textbf{System Requirement} & \textbf{Linked UR} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+
+  SR-F01 & The system shall deduct inventory quantities atomically upon Stripe \texttt{payment\_intent.succeeded} webhook confirmation & UR-C04, UR-A02 \\[4pt]
+  SR-F02 & The system shall send an order confirmation email within 30 seconds of successful payment & UR-C05 \\[4pt]
+  SR-F03 & The system shall generate a unique order reference number for every confirmed order & UR-C05, UR-C10 \\[4pt]
+  SR-F04 & The baker dashboard shall poll for new orders and refresh the queue every 30 seconds without a page reload & UR-B01 \\[4pt]
+  SR-F05 & The system shall trigger a low-stock alert when any ingredient falls below its configured threshold & UR-A02, UR-B05 \\[4pt]
+  SR-F06 & The system shall award loyalty points at a configurable rate (default: 1 point per \euro{}1 spent) upon order completion & UR-C07 \\[4pt]
+  SR-F07 & The system shall validate that sufficient loyalty points exist before applying a redemption discount & UR-C08 \\[4pt]
+  SR-F08 & The system shall prevent order submission if any required product is out of stock & UR-C02 \\[4pt]
+  SR-F09 & The system shall support order status transitions: Pending $\rightarrow$ Confirmed $\rightarrow$ Preparing $\rightarrow$ Ready $\rightarrow$ Out for Delivery $\rightarrow$ Delivered & UR-C06, UR-B02, UR-D03 \\[4pt]
+  SR-F10 & The system shall log all payment events (success, failure, refund) with timestamps in an audit trail & UR-A06 \\
+
+\end{longtable}
+
+\subsection{Non-Functional System Requirements}
+
+\begin{longtable}{L{1.8cm} L{2.5cm} L{9.5cm}}
+  \toprule
+  \textbf{ID} & \textbf{Category} & \textbf{Requirement} \\
+  \midrule
+  \endhead
+  \bottomrule
+  \endfoot
+
+  SR-NF01 & Performance   & The system shall support a minimum of 100 concurrent active sessions without degradation \\[4pt]
+  SR-NF02 & Performance   & Page load time shall not exceed 2 seconds on a standard 4G connection \\[4pt]
+  SR-NF03 & Availability  & The system shall maintain $\geq$99.5\% uptime, monitored via cloud provider SLA \\[4pt]
+  SR-NF04 & Security      & All customer data shall be encrypted in transit (TLS 1.3) and at rest (AES-256) \\[4pt]
+  SR-NF05 & Security      & No card data shall be stored server-side; all payment handling delegated to Stripe \\[4pt]
+  SR-NF06 & Usability     & The customer order form shall be completable in under 3 minutes by a first-time user \\[4pt]
+  SR-NF07 & Usability     & The baker dashboard shall be fully operable on a 10-inch tablet in portrait orientation \\[4pt]
+  SR-NF08 & Compliance    & The system shall comply with GDPR --- providing data export and deletion on customer request \\[4pt]
+  SR-NF09 & Scalability   & The system architecture shall support horizontal scaling to handle seasonal demand spikes \\[4pt]
+  SR-NF10 & Offline       & The delivery mobile PWA shall cache the day's delivery list for offline access \\
+
+\end{longtable}
+
+\section{Why Agile is Superior for Delivery Route Optimisation}
+
+Delivery route optimisation is one of the most compelling examples of why a
+\textbf{pure Waterfall approach would fail} for this system.
+
+\textbf{The problem with Waterfall here:} A Waterfall project would require
+the team to fully specify the routing algorithm in Week 1 --- before a single
+delivery has been made, before the team knows how many stops a typical day
+has, and before knowing whether drivers navigate by address, landmark, or GPS.
+Any upfront specification would be a guess, leading to a system built on
+incorrect assumptions that is expensive to change.
+
+\textbf{How Agile solves this iteratively:}
+
+\begin{lstlisting}[style=wireframe]
+Sprint 1  ->  Manual assignment by admin (address list only)
+               | Real deliveries made. Insight: drivers prefer map view.
+
+Sprint 2  ->  Google Maps link embedded per delivery
+               | Insight: 3-5 deliveries per driver per day; clustering matters.
+
+Sprint 3  ->  Route suggestions based on postal district clustering
+               | Insight: drivers reorder stops themselves -- need drag-to-reorder.
+
+Sprint 4  ->  Drag-and-drop route ordering + estimated time display
+               | Validated by actual driver usage data.
+\end{lstlisting}
+
+Each sprint produces \textbf{working, usable software} validated by the
+delivery staff who actually use it. The requirements for Sprint 4 could not
+have been written in Sprint 0 --- they \textit{emerged} from real operational
+experience.
+
+This exemplifies Agile's core strength: \textbf{requirements are discovered
+through use, not imagined in advance.} For a feature as operationally nuanced
+as route optimisation, Agile is not just preferable --- it is the only
+responsible approach.
+
+% ══════════════════════════════════════════════════════════════════════════════
+\chapter{Phase 4 --- System Design Specification}
+
+\section{Context Diagram (DFD Level 0)}
+
+The context diagram presents the \textbf{FreshBakes Web System as a single
+process} surrounded by all external entities that interact with it. This
+establishes the system boundary.
+
+\diagramplaceholder{dfd-context}{Context Diagram (DFD Level 0) --- FreshBakes Web System boundary and external entities}
+
+\textit{To insert: export the Mermaid context diagram as an image and replace
+the placeholder above. External entities: Customer, Baker, Admin, Delivery
+Staff, Stripe, Email Service.}
+
+\section{DFD Level 1 --- Order Flow}
+
+Level 1 decomposes the central system into its \textbf{six core processes},
+showing how data flows between them, external entities, and data stores.
+
+\diagramplaceholder{dfd-level1}{DFD Level 1 --- Six core processes: Process Order, Manage Inventory, Process Payment, Notify Baker, Track \& Deliver, Loyalty Engine}
+
+\textit{To insert: export the Mermaid DFD Level 1 diagram as an image and
+replace the placeholder above.}
+
+\section{Use Case Diagram}
+
+Actors: \textbf{Customer, Baker, Admin, Delivery Staff}
+
+\diagramplaceholder{use-case}{Use Case Diagram --- 17 use cases across 4 actors}
+
+\textit{To insert: export the Mermaid use case diagram as an image and replace
+the placeholder above.}
+
+\section{Entity Relationship Diagram (ERD)}
+
+Entities: \textbf{Customer, Order, Product, Inventory, Payment} (plus
+supporting entities Order\_Item, Delivery, Staff)
+
+\diagramplaceholder{erd}{Entity Relationship Diagram --- 8 entities with attributes and cardinality}
+
+\textit{To insert: export the Mermaid ERD as an image and replace the
+placeholder above.}
+
+\textbf{Key relationships:}
+\begin{itemize}[noitemsep]
+  \item Customer places zero or many Orders
+  \item Order contains one or many Order\_Items
+  \item Product is tracked by exactly one Inventory record
+  \item Order is settled by exactly one Payment
+  \item Order is fulfilled via zero or one Delivery
+  \item Staff handles zero or many Deliveries
+\end{itemize}
+
+\section{Order Fulfilment Flowchart}
+
+This flowchart traces the complete journey of an order, including the critical
+\textbf{stock availability check} and payment handling logic.
+
+\diagramplaceholder{flowchart-order}{Order Fulfilment Flowchart --- including stock availability check, Stripe payment, and delivery/collection split}
+
+\textit{To insert: export the Mermaid flowchart as an image and replace the
+placeholder above. Key decision points: stock availability, payment success,
+retry/cancel, order type (delivery vs. collection).}
+
+\section{UI Wireframe Descriptions}
+
+\textit{Note: These wireframes define layout, hierarchy, and component logic
+for implementation in Google Stitch or Figma.}
+
+\subsection{(a) Customer Order Form}
+
+\begin{lstlisting}[style=wireframe]
++-------------------------------------------------+
+|  FreshBakes               [Login] [Cart (2)]    |
++-------------------------------------------------+
+|  [ Search menu... ]                             |
+|  Categories: [All] [Cakes] [Pastries] [Custom]  |
++--------------+--------------+-------------------+
+| [img]        | [img]        | [img]             |
+| Croissant    | Birthday Cake| Sourdough Loaf    |
+| EUR 2.50     | From EUR35   | EUR 6.00          |
+| [Add to Cart]| [Customise ->]| [Add to Cart]    |
++--------------+--------------+-------------------+
+|  CUSTOM CAKE CONFIGURATOR (expands on click)    |
+|  Size:    [6"] [8"] [10"] [12"]                 |
+|  Sponge:  [Vanilla v]                           |
+|  Filling: [Buttercream v]                       |
+|  Message: [_____________________________]       |
+|  Upload reference image: [Attach file]          |
+|  Special instructions: [_________________]      |
++-------------------------------------------------+
+|  ORDER TYPE:  (x) Delivery   ( ) Collection     |
+|  Delivery address: [_______________________]    |
+|  Required by: [Date picker]  [Time]             |
++-------------------------------------------------+
+|  Loyalty Points: 240 pts available              |
+|  [ Apply 200 pts = -EUR 2.00 discount ]         |
++-------------------------------------------------+
+|  Subtotal: EUR 37.50    Discount: -EUR 2.00     |
+|  TOTAL: EUR 35.50                               |
+|              [ Proceed to Payment -> ]          |
++-------------------------------------------------+
+\end{lstlisting}
+
+\textbf{Key UX Notes:}
+\begin{itemize}[noitemsep]
+  \item Product cards show real-time stock badges (``Only 3 left!'')
+  \item Custom cake configurator is a collapsible accordion
+  \item Loyalty points section only shown to logged-in users
+  \item ``Proceed to Payment'' disabled until all required fields are valid
+  \item Mobile-responsive: single-column card layout on screens $<$ 768px
+\end{itemize}
+
+\subsection{(b) Baker Dashboard}
+
+\begin{lstlisting}[style=wireframe]
++-------------------------------------------------+
+|  Baker Dashboard -- Good morning, Yianna!       |
+|  Saturday 05 Apr  |  08:14                      |
++---------------+----------------+----------------+
+| QUEUE         | STOCK ALERTS   | COMPLETED      |
+| 14 orders     | 3 items low    | 7 today        |
++---------------+----------------+----------------+
+|  ACTIVE ORDER QUEUE (auto-refreshes 30s)        |
+| +---------------------------------------------+ |
+| | #FB-2041  |  08:00  |  URGENT               | |
+| | 2x Croissant, 1x Custom Cake (Vanilla/8")  | |
+| | Note: "Happy Birthday Elena"               | |
+| | Collection: 10:30am                        | |
+| | [Start Preparing]  [Flag Delay]            | |
+| +---------------------------------------------+ |
+| +---------------------------------------------+ |
+| | #FB-2042  |  08:05  |  DELIVERY             | |
+| | 1x Sourdough, 3x Almond Croissant          | |
+| | Delivery by: 11:00am                       | |
+| | [Start Preparing]                          | |
+| +---------------------------------------------+ |
++-------------------------------------------------+
+|  LOW STOCK ALERTS                               |
+|  * Almond Flour -- 200g remaining [Notify Admin]|
+|  * Eggs -- 6 remaining            [Notify Admin]|
++-------------------------------------------------+
+\end{lstlisting}
+
+\textbf{Key UX Notes:}
+\begin{itemize}[noitemsep]
+  \item Optimised for 10-inch tablet; large tap targets (min 44px)
+  \item Orders colour-coded: Red = urgent, Orange = delivery, Green = collection
+  \item Status button advances order through workflow with single tap
+  \item Low-stock alerts persist at bottom until admin acknowledges
+  \item Sound alert option for new incoming orders
+\end{itemize}
+
+\subsection{(c) Mobile Delivery App (PWA)}
+
+\begin{lstlisting}[style=wireframe]
++-------------------------+
+| FreshBakes Delivery     |
+| Nikos -- Sat 05 Apr     |
++-------------------------+
+| TODAY'S ROUTE  (4 stops)|
+| ----------------------- |
+| [Done] 1. Makarios Ave12|
+|    FB-2038 -- Delivered  |
+|                         |
+| > 2. Ledra St 45 [NOW]  |
+|    FB-2041              |
+|    Maria Georgiou       |
+|    Tel: 99-123456       |
+|    Custom cake - FRAGILE|
+|                         |
+|    [Navigate]           |
+|    [Mark Delivered]     |
+| ----------------------- |
+| 3. Athalassa Ave 8      |
+|    FB-2043              |
+|                         |
+| 4. Nicosia Mall Gate 2  |
+|    FB-2045              |
++-------------------------+
+| [All Orders] [Call HQ]  |
++-------------------------+
+\end{lstlisting}
+
+\textbf{Key UX Notes:}
+\begin{itemize}[noitemsep]
+  \item PWA --- works offline; delivery list cached at start of shift
+  \item Active stop highlighted with arrow; completed stops greyed
+  \item One-tap ``Navigate'' opens Google Maps with address pre-filled
+  \item ``Mark Delivered'' requires confirmation tap to prevent accidents
+  \item HQ call button visible on every screen for urgent contact
+\end{itemize}
+
+\section{Release Plan}
+
+\subsection{Phase 1 --- MVP (Weeks 1--8)}
+
+\textit{Goal: Replace notebooks and spreadsheets with a working digital
+ordering system.}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{L{4cm} L{2.5cm} X}
+    \toprule
+    \textbf{Sprint} & \textbf{Duration} & \textbf{Key Deliverables} \\
+    \midrule
+    Sprint 0 (Foundation)    & Weeks 1--2 & DB schema, cloud environment, Stripe webhook integration, inventory API \\
+    Sprint 1 (Ordering)      & Weeks 3--4 & Customer product browsing, order form, email confirmations \\
+    Sprint 2 (Baker Queue)   & Weeks 5--6 & Baker order queue dashboard, order status workflow \\
+    Sprint 3 (Admin/Stock)   & Weeks 7--8 & Admin inventory management, low-stock alerts, basic admin dashboard \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Phase 1 --- MVP sprint plan}
+\end{table}
+
+\textbf{MVP Success Criteria:}
+\begin{itemize}[noitemsep]
+  \item Customer can place and pay for an order online \checkmark
+  \item Baker receives and processes the order digitally \checkmark
+  \item Inventory deducts automatically on payment \checkmark
+  \item Admin can manage stock and view orders \checkmark
+\end{itemize}
+
+\subsection{Phase 2 --- Advanced Features (Weeks 9--16)}
+
+\textit{Goal: Add loyalty, delivery optimisation, and reporting --- differentiate
+from competitors.}
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{L{4cm} L{2.5cm} X}
+    \toprule
+    \textbf{Sprint} & \textbf{Duration} & \textbf{Key Deliverables} \\
+    \midrule
+    Sprint 4 (Loyalty)       & Weeks 9--10  & Loyalty points system (earn + redeem), customer account history \\
+    Sprint 5 (Delivery PWA)  & Weeks 11--12 & Mobile Delivery PWA --- assignment, status updates, map integration \\
+    Sprint 6 (Route Opt.)    & Weeks 13--14 & Delivery route clustering, drag-to-reorder, estimated delivery times \\
+    Sprint 7 (Go-Live)       & Weeks 15--16 & Sales \& inventory reports, UAT, staff training, go-live \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Phase 2 --- Advanced features sprint plan}
+\end{table}
+
+\textbf{Phase 2 Success Criteria:}
+\begin{itemize}[noitemsep]
+  \item Loyalty programme active with 50+ enrolled customers \checkmark
+  \item Delivery staff operating exclusively via mobile app \checkmark
+  \item Admin generating weekly sales reports \checkmark
+  \item System live and handling real orders at full capacity \checkmark
+\end{itemize}
+
+\section{Design Effectiveness Assessment}
+
+The system design addresses each of FreshBakes' original pain points directly:
+
+\begin{table}[H]
+  \centering
+  \begin{tabularx}{\textwidth}{L{3.5cm} L{5cm} L{3.5cm}}
+    \toprule
+    \textbf{Pain Point} & \textbf{Design Solution} & \textbf{Requirement} \\
+    \midrule
+    Stockouts during peaks     & Real-time inventory deduction (SR-F01) + low-stock alerts (SR-F05) & UR-A02 \\
+    Order mix-ups              & Unique order references (SR-F03) + digital baker queue (SR-F04)    & UR-B01, UR-B03 \\
+    No loyalty tracking        & Loyalty Engine process (SR-F06, SR-F07)                           & UR-C07, UR-C08 \\
+    Manual delivery scheduling & Delivery PWA with route optimisation (UR-D04)                     & UR-D01--D04 \\
+    No online presence         & Full customer-facing web ordering system                           & UR-C01--C10 \\
+    \bottomrule
+  \end{tabularx}
+  \caption{Pain point to design solution traceability}
+\end{table}
+
+The \textbf{Agile-first hybrid methodology} proves its worth in Phase 4: the
+delivery route optimisation could not have been fully specified upfront, yet
+the ERD accommodates iterative enrichment of the \texttt{DELIVERY} entity's
+\texttt{route\_notes} field without schema changes. The modular process design
+(six discrete DFD processes) ensures each module can be tested independently
+per sprint --- a direct architectural reflection of Agile's iterative delivery
+principle.
+
+\end{document}
