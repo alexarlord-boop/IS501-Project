@@ -284,7 +284,51 @@ User requirements describe **what the system must allow each actor to do**, writ
 
 ---
 
-### 3.2 System Requirements
+### 3.2 Stakeholder Analysis
+
+Identifying stakeholders and their concerns is a critical step in requirements engineering (Sommerville, 2016). A stakeholder is any individual, group, or system that has an interest in or influence over the system under development. The FreshBakes system involves both human actors and external technical services, each with distinct roles and expectations.
+
+| Stakeholder | Role in the System | Key Needs / Concerns |
+|---|---|---|
+| Customer | Places online orders for collection or delivery | Fast ordering, secure payment, accurate order status, loyalty visibility |
+| Baker | Prepares products and updates order progress | Clear queue visibility, custom order detail, low-stock awareness |
+| Admin/Owner | Oversees products, stock, customers, reports, and delivery allocation | Operational oversight, reporting accuracy, easy product/inventory control |
+| Delivery Staff | Completes assigned deliveries via mobile device | Clear route details, contact visibility, simple status updates |
+| Stripe | External payment processor | Reliable payment confirmation and clear transaction handling |
+| Email Service | Sends transactional notifications | Accurate trigger events and timely confirmation dispatch |
+
+This stakeholder analysis follows the model-based systems engineering principle that stakeholders extend beyond direct users to include technical dependencies, regulatory entities, and process participants. Understanding each stakeholder's concerns early in the requirements process helps ensure that functional and non-functional requirements align with real operational needs rather than speculative assumptions.
+
+---
+
+### 3.3 Requirements Elicitation and Validation
+
+The requirements for the FreshBakes system were derived through a combination of stakeholder interviews, observation of the bakery's current notebook-and-spreadsheet workflow, analysis of recurring operational problems, and review of low-fidelity interface prototypes.
+
+#### Elicitation Approach
+
+Requirements elicitation is the discovery phase in which the development team works directly with stakeholders to understand the application domain, existing services, and desired system capabilities. The following techniques were employed:
+
+- **Interviews with the owner/admin** clarified reporting, stock control, and delivery assignment needs. Closed interviews were used to validate specific feature expectations (e.g., "What data do you need in the daily dashboard?"), while open interviews explored broader pain points such as stockouts and order mix-ups.
+- **Observation of the manual process** (ethnography) exposed implicit requirements around order handoff, stock visibility, and confirmation accuracy. Watching the baker work revealed the need for a prioritised queue rather than a chronological list, and observing the owner manually assign deliveries highlighted the requirement for route support.
+- **Baker and delivery workflows** informed queue management, delay handling, and route support requirements. Direct engagement with these actors ensured that technical requirements like SR-F04 (dashboard polling) and SR-NF10 (offline PWA cache) emerged from real operational constraints rather than theoretical best practice.
+- **Prototype-oriented feedback** helped refine ordering, dashboard, and mobile delivery expectations. Low-fidelity wireframes allowed stakeholders to express tacit knowledge (what they make, not just what they say), consistent with participatory design principles.
+
+#### Validation Approach
+
+Requirements validation ensures that documented requirements actually define the system the customer wants. The FreshBakes requirements were validated against the following criteria:
+
+- **Validity:** requirements address the bakery's stated problems of stockouts, order mix-ups, and missing loyalty tracking. Each user requirement traces directly to a documented operational pain point from the feasibility study.
+- **Consistency:** user and system requirements avoid direct conflict and follow one shared order-status model (`Pending → Confirmed → Preparing → Ready → Out for Delivery → Delivered`). No requirement contradicts another.
+- **Completeness:** customer, baker, admin, and delivery staff needs are all represented. The stakeholder table above confirms that every identified actor has associated user requirements.
+- **Realism:** requirements remain achievable within the feasibility assumptions and SME-scale technology stack. Features like Stripe integration and PWA offline support are well-documented and proven in similar small business contexts.
+- **Verifiability:** each major requirement can be checked through system behavior, response time, or process outcome. For example, SR-F02 specifies a measurable 30-second email delivery window, and SR-NF02 defines a testable 2-second page load threshold.
+
+**Traceability:** User requirements (UR-\*) map to system requirements (SR-\*), which in turn inform the design artefacts presented in Phase 4 (UML diagrams) and Phase 5 (prototype interface design). This explicit linkage ensures that every design decision can be justified by reference to a validated stakeholder need, maintaining consistency from elicitation through to implementation.
+
+---
+
+### 3.4 System Requirements
 
 System requirements define **how the system must behave technically** to satisfy the user requirements above. These are measurable and testable.
 
@@ -320,7 +364,7 @@ System requirements define **how the system must behave technically** to satisfy
 
 ---
 
-### 3.3 Why Agile is Superior for Delivery Route Optimisation
+### 3.5 Why Agile is Superior for Delivery Route Optimisation
 
 Delivery route optimisation is one of the most compelling examples of why a **pure Waterfall approach would fail** for this system.
 
