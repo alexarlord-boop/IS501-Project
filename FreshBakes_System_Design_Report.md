@@ -429,7 +429,27 @@ The following textual specifications provide the detailed flow-of-events context
 
 ---
 
-### 4.1 Context Diagram (DFD Level 0)
+### 4.1 System Architecture and Module Design
+
+The following table defines the logical modules that structure the FreshBakes system. Each module encapsulates a coherent set of responsibilities and maps directly to the functional and non-functional requirements established in Phase 3.
+
+| Module | Primary Responsibility | Key Data / Interfaces | Requirement Links |
+|---|---|---|---|
+| Ordering Management | Captures customer orders and order details | Order, Order_Item, customer inputs | UR-C01-UR-C06, SR-F03, SR-F08 |
+| Payment Processing | Handles Stripe checkout and payment confirmation | Payment, Stripe webhook | UR-C04, SR-F01, SR-F10 |
+| Inventory Management | Tracks stock availability and reorder thresholds | Product, Inventory | UR-A02, UR-B05, SR-F05, SR-F08 |
+| Loyalty Management | Awards and redeems points | Customer loyalty balance, payment outcomes | UR-C07, UR-C08, SR-F06, SR-F07 |
+| Delivery Management | Assigns, tracks, and completes deliveries | Delivery, Staff, route details | UR-A05, UR-D01-UR-D04 |
+| Notification Services | Sends confirmation and status messages | Email triggers, order status events | UR-C05, UR-C06, SR-F02 |
+| Reporting/Admin Dashboard | Supports monitoring and control by the owner | Sales, stock alerts, order summaries | UR-A03, UR-A06 |
+
+This architecture provides a **requirements-to-design traceability layer**, bridging the functional requirements model (Phase 3) with the process-oriented Data Flow Diagrams and data-oriented Entity Relationship Diagram that follow. By explicitly naming modules and their responsibilities, the design demonstrates how the system's behaviour is partitioned and how each module contributes to the overall solution.
+
+---
+
+### 4.2 Context Diagram (DFD Level 0)
+
+The DFDs present the system from a **process-centered perspective**, showing how external actors, core processes, and data stores interact during ordering and fulfilment.
 
 The context diagram presents the **FreshBakes Web System as a single process** surrounded by all external entities that interact with it. This establishes the system boundary.
 
@@ -462,7 +482,7 @@ flowchart LR
 
 ---
 
-### 4.2 DFD Level 1 — Order Flow
+### 4.3 DFD Level 1 — Order Flow
 
 Level 1 decomposes the central system into its **six core processes**, showing how data flows between them, external entities, and data stores.
 
@@ -499,7 +519,9 @@ flowchart TD
 
 ---
 
-### 4.3 Use Case Diagram
+### 4.4 Use Case Diagram
+
+The use case diagram captures the system's **external behavior** by mapping actor goals to the services provided by the FreshBakes platform.
 
 Actors: **Customer, Baker, Admin, Delivery Staff**
 
@@ -554,7 +576,9 @@ graph LR
 
 ---
 
-### 4.4 Entity Relationship Diagram (ERD)
+### 4.5 Entity Relationship Diagram (ERD)
+
+The ERD supports the **database design** by defining the persistent entities, attributes, and relationships needed to implement the required business processes.
 
 Entities: **Customer, Order, Product, Inventory, Payment** (plus supporting entities Order_Item, Delivery, Staff)
 
@@ -642,7 +666,7 @@ erDiagram
 
 ---
 
-### 4.5 Order Fulfillment Flowchart
+### 4.6 Order Fulfillment Flowchart
 
 This flowchart traces the complete journey of an order, including the critical **stock availability check** and payment handling logic.
 
@@ -688,7 +712,7 @@ flowchart TD
 
 ---
 
-### 4.6 UI Wireframe Descriptions
+### 4.7 UI Wireframe Descriptions
 
 > **Note:** These wireframes define layout, hierarchy, and component logic for implementation in Google Stitch or Figma. A separate prompt will generate the Stitch-ready prototype specifications.
 
@@ -818,7 +842,7 @@ flowchart TD
 
 ---
 
-### 4.7 Release Plan
+### 4.8 Release Plan
 
 #### Phase 1 — MVP (Weeks 1–8)
 
@@ -858,7 +882,7 @@ flowchart TD
 
 ---
 
-### 4.8 Design Effectiveness Assessment
+### 4.9 Design Effectiveness Assessment
 
 The system design addresses each of FreshBakes' original pain points directly:
 
