@@ -322,7 +322,7 @@ Requirements validation ensures that documented requirements actually define the
 - **Realism:** requirements remain achievable within the feasibility assumptions and SME-scale technology stack. Features like Stripe integration and PWA offline support are well-documented and proven in similar small business contexts.
 - **Verifiability:** each major requirement can be checked through system behavior, response time, or process outcome. For example, SR-F02 specifies a measurable 30-second email delivery window, and SR-NF02 defines a testable 2-second page load threshold.
 
-**Traceability:** User requirements (UR-\*) map to system requirements (SR-\*), which in turn inform the design artefacts presented in Phase 4, including the DFD processes (Section 4.2–4.3), use case diagram (Section 4.4), ERD (Section 4.5), and wireframes (Section 4.6). This explicit linkage ensures that every design decision can be justified by reference to a validated stakeholder need, maintaining consistency from elicitation through to implementation.
+**Traceability:** User requirements (UR-\*) map to system requirements (SR-\*), which in turn inform the design artefacts presented in Phase 4, including the DFD processes (Section 4.2–4.3), use case diagram (Section 4.4), ERD (Section 4.5), and wireframes (Section 4.7). This explicit linkage ensures that every design decision can be justified by reference to a validated stakeholder need, maintaining consistency from elicitation through to implementation.
 
 ---
 
