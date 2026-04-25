@@ -297,7 +297,7 @@ Identifying stakeholders and their concerns is a critical step in requirements e
 | Stripe | External payment processor | Reliable payment confirmation and clear transaction handling |
 | Email Service | Sends transactional notifications | Accurate trigger events and timely confirmation dispatch |
 
-This stakeholder analysis follows the model-based systems engineering principle that stakeholders extend beyond direct users to include technical dependencies, regulatory entities, and process participants. Understanding each stakeholder's concerns early in the requirements process helps ensure that functional and non-functional requirements align with real operational needs rather than speculative assumptions.
+This stakeholder analysis follows the principle that stakeholders extend beyond direct users to include technical dependencies and process participants. Understanding each stakeholder's concerns early in the requirements process helps ensure that functional and non-functional requirements align with real operational needs rather than speculative assumptions.
 
 ---
 
@@ -307,12 +307,12 @@ The requirements for the FreshBakes system were derived through a combination of
 
 #### Elicitation Approach
 
-Requirements elicitation is the discovery phase in which the development team works directly with stakeholders to understand the application domain, existing services, and desired system capabilities. The following techniques were employed:
+Requirements elicitation is the discovery phase in which the development team works directly with stakeholders to understand the application domain, existing services, and desired system capabilities. The following techniques were employed for FreshBakes:
 
-- **Interviews with the owner/admin** clarified reporting, stock control, and delivery assignment needs. Closed interviews were used to validate specific feature expectations (e.g., "What data do you need in the daily dashboard?"), while open interviews explored broader pain points such as stockouts and order mix-ups.
-- **Observation of the manual process** (ethnography) exposed implicit requirements around order handoff, stock visibility, and confirmation accuracy. Watching the baker work revealed the need for a prioritised queue rather than a chronological list, and observing the owner manually assign deliveries highlighted the requirement for route support.
-- **Baker and delivery workflows** informed queue management, delay handling, and route support requirements. Direct engagement with these actors ensured that technical requirements like SR-F04 (dashboard polling) and SR-NF10 (offline PWA cache) emerged from real operational constraints rather than theoretical best practice.
-- **Prototype-oriented feedback** helped refine ordering, dashboard, and mobile delivery expectations. Low-fidelity wireframes allowed stakeholders to express tacit knowledge (what they make, not just what they say), consistent with participatory design principles.
+- **Interviews with the owner/admin** clarified reporting, stock control, and delivery assignment needs for the bakery's daily operations. Closed interviews were used to validate specific feature expectations (e.g., "What data do you need in the daily dashboard?"), while open interviews explored broader pain points such as stockouts and order mix-ups.
+- **Observation of the manual process** exposed implicit requirements around order handoff, stock visibility, and confirmation accuracy. Watching the baker work with the current notebook system revealed the need for a prioritised queue rather than a chronological list, and observing the owner manually assign deliveries highlighted the requirement for route support.
+- **Baker and delivery workflows** informed queue management, delay handling, and route support requirements. Direct engagement with these actors helped ensure that technical requirements like SR-F04 (dashboard polling) and SR-NF10 (offline PWA cache) emerged from real operational constraints.
+- **Prototype-oriented feedback** helped refine ordering, dashboard, and mobile delivery expectations. Low-fidelity wireframes allowed FreshBakes stakeholders to express tacit knowledge about their workflow needs.
 
 #### Validation Approach
 
@@ -324,7 +324,7 @@ Requirements validation ensures that documented requirements actually define the
 - **Realism:** requirements remain achievable within the feasibility assumptions and SME-scale technology stack. Features like Stripe integration and PWA offline support are well-documented and proven in similar small business contexts.
 - **Verifiability:** each major requirement can be checked through system behavior, response time, or process outcome. For example, SR-F02 specifies a measurable 30-second email delivery window, and SR-NF02 defines a testable 2-second page load threshold.
 
-**Traceability:** User requirements (UR-\*) map to system requirements (SR-\*), which in turn inform the design artefacts presented in Phase 4 (UML diagrams) and Phase 5 (prototype interface design). This explicit linkage ensures that every design decision can be justified by reference to a validated stakeholder need, maintaining consistency from elicitation through to implementation.
+**Traceability:** User requirements (UR-\*) map to system requirements (SR-\*), which in turn inform the design artefacts presented in Phase 4 (UML diagrams, ERD, and wireframe designs). This explicit linkage ensures that every design decision can be justified by reference to a validated stakeholder need, maintaining consistency from elicitation through to implementation.
 
 ---
 
