@@ -16,8 +16,6 @@
 
 ---
 
----
-
 ## Phase 1 — Methodology Evaluation
 
 ### 1.1 Overview
@@ -286,7 +284,7 @@ User requirements describe **what the system must allow each actor to do**, writ
 
 ### 3.2 Stakeholder Analysis
 
-Identifying stakeholders and their concerns is a critical step in requirements engineering (Sommerville, 2016). A stakeholder is any individual, group, or system that has an interest in or influence over the system under development. The FreshBakes system involves both human actors and external technical services, each with distinct roles and expectations.
+Before defining detailed system requirements, it is essential to identify all stakeholders and their concerns. A stakeholder is any individual, group, or system that has an interest in or influence over the system under development. The FreshBakes system involves both human actors and external technical services, each with distinct roles and expectations.
 
 | Stakeholder | Role in the System | Key Needs / Concerns |
 |---|---|---|
@@ -297,7 +295,7 @@ Identifying stakeholders and their concerns is a critical step in requirements e
 | Stripe | External payment processor | Reliable payment confirmation and clear transaction handling |
 | Email Service | Sends transactional notifications | Accurate trigger events and timely confirmation dispatch |
 
-This stakeholder analysis follows the principle that stakeholders extend beyond direct users to include technical dependencies and process participants. Understanding each stakeholder's concerns early in the requirements process helps ensure that functional and non-functional requirements align with real operational needs rather than speculative assumptions.
+Understanding each stakeholder's concerns early in the requirements process helps ensure that functional and non-functional requirements align with real operational needs rather than speculative assumptions. This analysis informed both the user requirements in Section 3.1 and the elicitation approach described below.
 
 ---
 
@@ -324,7 +322,7 @@ Requirements validation ensures that documented requirements actually define the
 - **Realism:** requirements remain achievable within the feasibility assumptions and SME-scale technology stack. Features like Stripe integration and PWA offline support are well-documented and proven in similar small business contexts.
 - **Verifiability:** each major requirement can be checked through system behavior, response time, or process outcome. For example, SR-F02 specifies a measurable 30-second email delivery window, and SR-NF02 defines a testable 2-second page load threshold.
 
-**Traceability:** User requirements (UR-\*) map to system requirements (SR-\*), which in turn inform the design artefacts presented in Phase 4 (UML diagrams, ERD, and wireframe designs). This explicit linkage ensures that every design decision can be justified by reference to a validated stakeholder need, maintaining consistency from elicitation through to implementation.
+**Traceability:** User requirements (UR-\*) map to system requirements (SR-\*), which in turn inform the design artefacts presented in Phase 4, including the DFD processes (Section 4.2–4.3), use case diagram (Section 4.4), ERD (Section 4.5), and wireframes (Section 4.6). This explicit linkage ensures that every design decision can be justified by reference to a validated stakeholder need, maintaining consistency from elicitation through to implementation.
 
 ---
 
@@ -393,7 +391,7 @@ This exemplifies Agile's core strength: **requirements are discovered through us
 
 ### 3.6 Key Use Case Specifications
 
-The following textual specifications provide the detailed flow-of-events context that complements the use case diagram in Phase 4.
+The following textual specifications provide the detailed flow-of-events context that complements the use case diagram presented in Section 4.4.
 
 #### Use Case 1: Place Order
 - **Primary Actor:** Customer
@@ -431,7 +429,7 @@ The following textual specifications provide the detailed flow-of-events context
 
 ### 4.1 System Architecture and Module Design
 
-The following table defines the logical modules that structure the FreshBakes system. Each module encapsulates a coherent set of responsibilities and maps directly to the functional requirements established in Phase 3.
+Before presenting the detailed design artefacts, it is useful to define the logical architecture that structures the FreshBakes system. The following table defines the key modules, each encapsulating a coherent set of responsibilities and mapping directly to the functional requirements established in Phase 3.
 
 | Module | Primary Responsibility | Key Data / Interfaces | Requirement Links |
 |---|---|---|---|
@@ -443,15 +441,15 @@ The following table defines the logical modules that structure the FreshBakes sy
 | Notification Services | Sends confirmation and status messages | Email triggers, order status events | UR-C05, UR-C06, SR-F02 |
 | Reporting/Admin Dashboard | Supports monitoring and control by the owner | Sales, stock alerts, order summaries | UR-A03, UR-A06 |
 
-This architecture provides a **requirements-to-design traceability layer**, bridging the functional requirements model (Phase 3) with the process-oriented Data Flow Diagrams and data-oriented Entity Relationship Diagram that follow. By explicitly naming modules and their responsibilities, the design demonstrates how the system's behaviour is partitioned and how each module contributes to the overall solution.
+This architecture provides a **requirements-to-design traceability layer**, bridging the functional requirements model from Phase 3 with the process-oriented Data Flow Diagrams (Sections 4.2–4.3), the use case diagram (Section 4.4), and the data-oriented Entity Relationship Diagram (Section 4.5) that follow. By explicitly naming modules and their responsibilities, the design demonstrates how the system's behaviour is partitioned and how each module contributes to the overall solution.
 
 ---
 
 ### 4.2 Context Diagram (DFD Level 0)
 
-The DFDs present the system from a **process-centered perspective**, showing how external actors, core processes, and data stores interact during ordering and fulfilment.
+Data Flow Diagrams (DFDs) present the system from a **process-centered perspective**, showing how external actors, core processes, and data stores interact during ordering and fulfilment. This complements the entity-relationship view provided by the ERD in Section 4.5.
 
-The context diagram presents the **FreshBakes Web System as a single process** surrounded by all external entities that interact with it. This establishes the system boundary.
+The context diagram (Level 0) presents the **FreshBakes Web System as a single process** surrounded by all external entities that interact with it. This establishes the system boundary.
 
 ```mermaid
 flowchart LR
@@ -521,7 +519,7 @@ flowchart TD
 
 ### 4.4 Use Case Diagram
 
-The use case diagram captures the system's **external behavior** by mapping actor goals to the services provided by the FreshBakes platform.
+The use case diagram captures the system's **external behavior** by mapping actor goals to the services provided by the FreshBakes platform. The textual specifications for four key use cases were presented in Section 3.6.
 
 Actors: **Customer, Baker, Admin, Delivery Staff**
 
@@ -668,7 +666,7 @@ erDiagram
 
 ### 4.6 Order Fulfillment Flowchart
 
-This flowchart traces the complete journey of an order, including the critical **stock availability check** and payment handling logic.
+This flowchart traces the complete journey of a customer order from placement through fulfilment, including the critical **stock availability check** and payment handling logic. It provides an operational view that complements the structural perspectives shown in the DFD and ERD above.
 
 ```mermaid
 flowchart TD
@@ -714,7 +712,7 @@ flowchart TD
 
 ### 4.7 UI Wireframe Descriptions
 
-> **Note:** These wireframes define layout, hierarchy, and component logic for implementation in Google Stitch or Figma. A separate prompt will generate the Stitch-ready prototype specifications.
+The following wireframes translate the functional requirements and use case flows into concrete user interface designs. These wireframes define layout, hierarchy, and component logic for the three primary user-facing interfaces.
 
 ---
 
@@ -844,6 +842,8 @@ flowchart TD
 
 ### 4.8 Release Plan
 
+The release plan operationalises the Agile-first hybrid methodology recommended in Phase 1 and aligns with the 16-week schedule feasibility assessment in Section 2.5.
+
 #### Phase 1 — MVP (Weeks 1–8)
 
 *Goal: Replace notebooks and spreadsheets with a working digital ordering system.*
@@ -894,4 +894,4 @@ The system design addresses each of FreshBakes' original pain points directly:
 | Manual delivery scheduling | Delivery PWA with route optimisation (UR-D04) | UR-D01–D04 |
 | No online presence | Full customer-facing web ordering system | UR-C01–C10 |
 
-The **Agile-first hybrid methodology** proves its worth in Phase 4: the delivery route optimisation (4.3 DFD process 5.0) could not have been fully specified upfront, yet the ERD accommodates iterative enrichment of the `DELIVERY` entity's `route_notes` field without schema changes. The modular process design (6 discrete DFD processes) ensures each module can be tested independently per sprint — a direct architectural reflection of Agile's iterative delivery principle.
+The **Agile-first hybrid methodology** recommended in Phase 1 proves its worth throughout this design: the delivery route optimisation (Section 3.5, DFD process 5.0 in Section 4.3) could not have been fully specified upfront, yet the ERD (Section 4.5) accommodates iterative enrichment of the `DELIVERY` entity's `route_notes` field without schema changes. The modular process design (6 discrete DFD processes) ensures each module can be tested independently per sprint — a direct architectural reflection of Agile's iterative delivery principle.
