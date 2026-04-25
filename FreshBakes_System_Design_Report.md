@@ -128,6 +128,8 @@ FreshBakes requires a standard web stack — no exotic infrastructure. Cloud pro
 
 ### 2.2 Economic Feasibility
 
+> **Assumption note:** The following figures are planning estimates prepared for feasibility evaluation. They are intended to test economic viability for FreshBakes, not to represent vendor quotations or guaranteed revenue.
+
 **Setup Cost Breakdown:**
 
 | Item | Cost |
@@ -159,9 +161,9 @@ FreshBakes requires a standard web stack — no exotic infrastructure. Cloud pro
 | Year 2 | €20,000 | €1,200 | €18,800 | +€32,600 |
 | Year 3 | €20,000 | €1,200 | €18,800 | +€51,400 |
 
-> **Payback Period: ~3 months. ROI over 3 years: +928%**
+> **Projected Payback Period: ~3 months. Estimated ROI over 3 years: +928%**
 
-**Verdict: Highly economically feasible.**
+**Verdict: Economically feasible, based on the stated planning assumptions and projected operating benefits.**
 
 ---
 
@@ -175,7 +177,7 @@ Operating in Cyprus (EU member state), FreshBakes must comply with:
 - **eIDAS & Electronic Signatures:** Order confirmations via email constitute valid electronic records under EU law.
 - **Food Business Registration:** Already assumed compliant (existing bakery); the digital system introduces no new regulatory category.
 
-**Verdict: Legally feasible with standard compliance measures.**
+**Verdict: Legally feasible, with standard compliance measures required for EU digital commerce.**
 
 ---
 
@@ -192,7 +194,7 @@ The primary operational risk is **staff adoption**. FreshBakes currently operate
 
 The 2025 Cyprus tourism boom is a *positive* operational factor — tourist customers actively prefer digital ordering over phone calls and have higher average order values. The system directly addresses FreshBakes' three stated pain points: stockouts, order mix-ups, and missing loyalty tracking.
 
-**Verdict: Operationally feasible with a structured change-management plan.**
+**Verdict: Operationally feasible, with a structured change-management plan to support staff adoption.**
 
 ---
 
@@ -211,7 +213,7 @@ Using the recommended Agile (Scrum) approach with 2-week sprints:
 
 A 4-month delivery timeline is realistic for a 2-person development team and aligns with completing the system before peak summer tourism season.
 
-**Verdict: Schedule feasible — go-live achievable within one business quarter.**
+**Verdict: Schedule feasible, with go-live achievable within one business quarter under the proposed Agile plan.**
 
 ---
 
@@ -220,12 +222,12 @@ A 4-month delivery timeline is realistic for a 2-person development team and ali
 | Dimension | Status | Confidence |
 |---|---|---|
 | Technical | Feasible | High |
-| Economic | Feasible | High — 3-month payback |
+| Economic | Feasible | High — projected 3-month payback |
 | Legal | Feasible | High — standard EU compliance |
 | Operational | Feasible — low risk | Medium — staff training required |
 | Schedule | Feasible | High — 16-week Agile delivery |
 
-> **Overall Verdict: The FreshBakes web system is feasible across all five TELOS dimensions. The project is recommended for immediate initiation**, with operational risk managed through incremental Agile delivery and dedicated staff onboarding sessions.
+> **Overall Verdict: The FreshBakes web system is feasible across all five TELOS dimensions, based on the planning estimates and operational assumptions detailed above. The project is recommended for immediate initiation**, with operational risk managed through incremental Agile delivery and dedicated staff onboarding sessions.
 
 ---
 
