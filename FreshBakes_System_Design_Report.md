@@ -431,7 +431,7 @@ The following textual specifications provide the detailed flow-of-events context
 
 ### 4.1 System Architecture and Module Design
 
-The following table defines the logical modules that structure the FreshBakes system. Each module encapsulates a coherent set of responsibilities and maps directly to the functional and non-functional requirements established in Phase 3.
+The following table defines the logical modules that structure the FreshBakes system. Each module encapsulates a coherent set of responsibilities and maps directly to the functional requirements established in Phase 3.
 
 | Module | Primary Responsibility | Key Data / Interfaces | Requirement Links |
 |---|---|---|---|
@@ -894,4 +894,4 @@ The system design addresses each of FreshBakes' original pain points directly:
 | Manual delivery scheduling | Delivery PWA with route optimisation (UR-D04) | UR-D01–D04 |
 | No online presence | Full customer-facing web ordering system | UR-C01–C10 |
 
-The **Agile-first hybrid methodology** proves its worth in Phase 4: the delivery route optimisation (4.2 DFD process 5.0) could not have been fully specified upfront, yet the ERD accommodates iterative enrichment of the `DELIVERY` entity's `route_notes` field without schema changes. The modular process design (6 discrete DFD processes) ensures each module can be tested independently per sprint — a direct architectural reflection of Agile's iterative delivery principle.
+The **Agile-first hybrid methodology** proves its worth in Phase 4: the delivery route optimisation (4.3 DFD process 5.0) could not have been fully specified upfront, yet the ERD accommodates iterative enrichment of the `DELIVERY` entity's `route_notes` field without schema changes. The modular process design (6 discrete DFD processes) ensures each module can be tested independently per sprint — a direct architectural reflection of Agile's iterative delivery principle.
