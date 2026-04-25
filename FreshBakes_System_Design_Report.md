@@ -391,6 +391,38 @@ Each sprint produces **working, usable software** validated by the delivery staf
 
 This exemplifies Agile's core strength: **requirements are discovered through use, not imagined in advance.** For a feature as operationally nuanced as route optimisation, Agile is not just preferable — it is the only responsible approach.
 
+### 3.6 Key Use Case Specifications
+
+The following textual specifications provide the detailed flow-of-events context that complements the use case diagram in Phase 4.
+
+#### Use Case 1: Place Order
+- **Primary Actor:** Customer
+- **Preconditions:** Customer has selected one or more products and provided required order details.
+- **Main Flow:** Customer reviews basket, selects delivery or collection, enters required details, proceeds to Stripe checkout, and receives confirmation after successful payment.
+- **Alternate Flow:** If stock is unavailable or payment fails, the system displays a clear message and prompts the customer to revise or retry.
+- **Postcondition:** A confirmed order is recorded and routed for fulfilment.
+
+#### Use Case 2: Manage Inventory
+- **Primary Actor:** Admin/Owner
+- **Preconditions:** Admin is authenticated and product inventory data exists.
+- **Main Flow:** Admin reviews stock levels, updates quantities or thresholds, and saves changes for operational use.
+- **Alternate Flow:** If invalid stock data is entered, the system rejects the update and prompts for correction.
+- **Postcondition:** Current stock and threshold information is stored for ordering and alert processes.
+
+#### Use Case 3: Assign Deliveries
+- **Primary Actor:** Admin/Owner
+- **Preconditions:** Delivery-type orders exist and delivery staff are available.
+- **Main Flow:** Admin reviews ready deliveries, assigns an order to a delivery staff member, and the mobile delivery queue updates accordingly.
+- **Alternate Flow:** If no driver is available, the order remains pending assignment and is flagged for follow-up.
+- **Postcondition:** Delivery responsibility is recorded and visible to staff.
+
+#### Use Case 4: Track Order Status
+- **Primary Actor:** Customer
+- **Preconditions:** A valid order has been created.
+- **Main Flow:** Customer accesses the order reference or account view and sees the latest order status as it moves through fulfilment.
+- **Alternate Flow:** If the order reference is invalid, the system returns an error message and requests a valid lookup.
+- **Postcondition:** Customer receives an up-to-date status view without contacting the bakery manually.
+
 ---
 
 ## Phase 4 — System Design Specification
