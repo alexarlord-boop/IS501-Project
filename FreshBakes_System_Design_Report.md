@@ -512,9 +512,9 @@ flowchart TD
     DEL(["🚚 Delivery Staff"])
     STRIPE(["💳 Stripe"])
 
-    DS1([("📦 Order Store")])
-    DS2([("🥐 Inventory Store")])
-    DS3([("👥 Customer Store")])
+    DS1[("📦 Order Store")]
+    DS2[("🥐 Inventory Store")]
+    DS3[("👥 Customer Store")]
 
     CUST -->|"Order details"| P1["1.0 Process Order"]
     P1 -->|"Check stock levels"| P2["2.0 Manage Inventory"]
