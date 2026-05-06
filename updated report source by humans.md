@@ -10,17 +10,16 @@
 
 ## **Table of Contents**
 
-1. [Phase 1 — Methodology Evaluation](#phase-1)  
-2. [Phase 2 — Feasibility Study](#phase-2)  
-3. [Phase 3 — Requirements Engineering](#phase-3)  
-4. [Phase 4 — System Design Specification](#phase-4)
+1. [Phase 1 — Methodology Evaluation](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/ghamm/Desktop/text.md#phase-1--methodology-evaluation)  
+2. [Phase 2 — Feasibility Study](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/ghamm/Desktop/text.md#phase-2--feasibility-study)  
+3. [Phase 3 — Requirements Engineering](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/ghamm/Desktop/text.md#phase-3--requirements-engineering)  
+4. [Phase 4 — System Design Specification](https://file+.vscode-resource.vscode-cdn.net/c%3A/Users/ghamm/Desktop/text.md#phase-4--system-design-specification)
 
 ---
 
 ---
 
-<a id="phase-1"></a>
-## **Phase 1: Methodology Evaluation**
+## **Phase 1: Methodology Evaluation \[Manuel\]**
 
 ### **1.1 Overview**
 
@@ -125,8 +124,7 @@ Neither Waterfall nor Agile alone is the right answer for FreshBakes. Waterfall 
 
 The hybrid approach is not a compromise, it is a deliberate context-aware allocation of methodology. Managed with versioned API contracts and disciplined sprint ceremonies, it’s the most appropriate framework for a small budget-conscious business entering digital transformation in a competitive, tourist-driven market.
 
-<a id="phase-2"></a>
-## **Phase 2: Feasibility Study**
+## **Phase 2: Feasibility Study \[Manuel\]**
 
 **2.0** **Feasibility Study (TELOS Framework)**
 
@@ -247,8 +245,7 @@ Not all feasibility dimensions carry equal weight for FreshBakes. The table belo
 
 **Overall Verdict:** The FreshBakes web system is feasible across all five TELOS dimensions and is recommended for initiation. Economic and schedule feasibility are the most critical factors for a business of this size and seasonality. The one conditional requirement before go-live is a confirmed staff onboarding plan, particularly for the owner, to ensure the system is adopted rather than bypassed. Subject to that condition, the project presents a compelling, low-risk investment with a measurable return within the first quarter of operation.
 
-<a id="phase-3"></a>
-## **Phase 3 — Requirements Engineering**
+## **Phase 3 — Requirements Engineering (Matvey)**
 
 ### **3.1 User Requirements**
 
@@ -301,49 +298,7 @@ User Requirement specify what each actor can do in the system
 
 ---
 
-### **3.2 Stakeholder Analysis**
-
-Before defining detailed system requirements, it is essential to identify all stakeholders and their concerns. A stakeholder is any individual, group, or system that has an interest in or influence over the system under development. The FreshBakes system involves both human actors and external technical services, each with distinct roles and expectations.
-
-| Stakeholder | Role in the System | Key Needs / Concerns |
-| :---- | :---- | :---- |
-| Customer | Places online orders for collection or delivery | Fast ordering, secure payment, accurate order status, loyalty visibility |
-| Baker | Prepares products and updates order progress | Clear queue visibility, custom order detail, low-stock awareness |
-| Admin/Owner | Oversees products, stock, customers, reports, and delivery allocation | Operational oversight, reporting accuracy, easy product/inventory control |
-| Delivery Staff | Completes assigned deliveries via mobile device | Clear route details, contact visibility, simple status updates |
-| Stripe | External payment processor | Reliable payment confirmation and clear transaction handling |
-| Email Service | Sends transactional notifications | Accurate trigger events and timely confirmation dispatch |
-
-Understanding each stakeholder's concerns early in the requirements process helps ensure that functional and non-functional requirements align with real operational needs rather than speculative assumptions. This analysis informed both the user requirements in Section 3.1 and the elicitation approach described below.
-
----
-
-### **3.3 Requirements Elicitation and Validation**
-
-The requirements for the FreshBakes system were derived through a combination of stakeholder interviews, observation of the bakery's current notebook-and-spreadsheet workflow, analysis of recurring operational problems, and review of low-fidelity interface prototypes.
-
-#### **Elicitation Approach**
-
-* Interviews with the owner/admin clarified reporting, stock control, and delivery assignment needs for the bakery's daily operations. Closed interviews were used to validate specific feature expectations (e.g., "What data do you need in the daily dashboard?"), while open interviews explored broader pain points such as stockouts and order mix-ups.
-* Observation of the manual process exposed implicit requirements around order handoff, stock visibility, and confirmation accuracy. Watching the baker work with the current notebook system revealed the need for a prioritised queue rather than a chronological list, and observing the owner manually assign deliveries highlighted the requirement for route support.
-* Baker and delivery workflows informed queue management, delay handling, and route support requirements. Direct engagement with these actors helped ensure that technical requirements like SR-F04 (dashboard polling) and SR-NF10 (offline PWA cache) emerged from real operational constraints.
-* Prototype-oriented feedback helped refine ordering, dashboard, and mobile delivery expectations. Low-fidelity wireframes allowed FreshBakes stakeholders to express tacit knowledge about their workflow needs.
-
-#### **Validation Approach**
-
-Requirements validation ensures that documented requirements actually define the system the customer wants. The FreshBakes requirements were validated against the following criteria:
-
-* **Validity:** requirements address the bakery's stated problems of stockouts, order mix-ups, and missing loyalty tracking. Each user requirement traces directly to a documented operational pain point from the feasibility study.
-* **Consistency:** user and system requirements avoid direct conflict and follow one shared order-status model (`Pending → Confirmed → Preparing → Ready → Out for Delivery → Delivered`). No requirement contradicts another.
-* **Completeness:** customer, baker, admin, and delivery staff needs are all represented. The stakeholder table above confirms that every identified actor has associated user requirements.
-* **Realism:** requirements remain achievable within the feasibility assumptions and SME-scale technology stack. Features like Stripe integration and PWA offline support are well-documented and proven in similar small business contexts.
-* **Verifiability:** each major requirement can be checked through system behavior, response time, or process outcome. For example, SR-F02 specifies a measurable 30-second email delivery window, and SR-NF02 defines a testable 2-second page load threshold.
-
-**Traceability:** User requirements (UR-*) map to system requirements (SR-*), which in turn inform the design artefacts presented in Phase 4, including the DFD processes (Section 4.2-4.3), use case diagram (Section 4.4), ERD (Section 4.5), and wireframes (Section 4.7). This explicit linkage ensures that every design decision can be justified by reference to a validated stakeholder need, maintaining consistency from elicitation through to implementation.
-
----
-
-### **3.4 System Requirements**
+### **3.2 System Requirements**
 
 System requirements translate high-level user goals to technological implementation to meet user needs
 
@@ -379,7 +334,7 @@ System requirements translate high-level user goals to technological implementat
 
 ---
 
-### **3.5 Why Agile is Superior for Delivery Route Optimisation**
+### **3.3 Why Agile is Superior for Delivery Route Optimisation**
 
 Waterfall approach would fail for this project since the team will be forced to perfectly design and code the routing algorithm in Week 1\. Due to lack of real data such as number of stops the drivers take, navigation by map or street addresses. Building complex systems such as delivery route optimization without real data and entirely on secondary data and guesses leads to expensive software. 
 
@@ -407,327 +362,260 @@ This shows the main strength of Agile methodology over the traditional manageria
 
 ---
 
-### **3.6 Key Use Case Specifications**
-
-The following textual specifications provide the detailed flow-of-events context that complements the use case diagram presented in Section 4.4.
-
-#### **Use Case 1: Place Order**
-
-* **Primary Actor:** Customer
-* **Preconditions:** Customer has selected one or more products and provided required order details.
-* **Main Flow:** Customer reviews basket, selects delivery or collection, enters required details, proceeds to Stripe checkout, and receives confirmation after successful payment.
-* **Alternate Flow:** If stock is unavailable or payment fails, the system displays a clear message and prompts the customer to revise or retry.
-* **Postcondition:** A confirmed order is recorded and routed for fulfilment.
-
-#### **Use Case 2: Manage Inventory**
-
-* **Primary Actor:** Admin/Owner
-* **Preconditions:** Admin is authenticated and product inventory data exists.
-* **Main Flow:** Admin reviews stock levels, updates quantities or thresholds, and saves changes for operational use.
-* **Alternate Flow:** If invalid stock data is entered, the system rejects the update and prompts for correction.
-* **Postcondition:** Current stock and threshold information is stored for ordering and alert processes.
-
-#### **Use Case 3: Assign Deliveries**
-
-* **Primary Actor:** Admin/Owner
-* **Preconditions:** Delivery-type orders exist and delivery staff are available.
-* **Main Flow:** Admin reviews ready deliveries, assigns an order to a delivery staff member, and the mobile delivery queue updates accordingly.
-* **Alternate Flow:** If no driver is available, the order remains pending assignment and is flagged for follow-up.
-* **Postcondition:** Delivery responsibility is recorded and visible to staff.
-
-#### **Use Case 4: Track Order Status**
-
-* **Primary Actor:** Customer
-* **Preconditions:** A valid order has been created.
-* **Main Flow:** Customer accesses the order reference or account view and sees the latest order status as it moves through fulfilment.
-* **Alternate Flow:** If the order reference is invalid, the system returns an error message and requests a valid lookup.
-* **Postcondition:** Customer receives an up-to-date status view without contacting the bakery manually.
-
----
-
-<a id="phase-4"></a>
 ## **Phase 4 — System Design Specification**
 
 ---
 
-### **4.1 System Architecture and Module Design**
-
-Before presenting the detailed design artefacts, it is useful to define the logical architecture that structures the FreshBakes system. The following table defines the key modules, each encapsulating a coherent set of responsibilities and mapping directly to the functional requirements established in Phase 3.
-
-| Module | Primary Responsibility | Key Data / Interfaces | Requirement Links |
-| :---- | :---- | :---- | :---- |
-| Ordering Management | Captures customer orders and order details | Order, Order_Item, customer inputs | UR-C01-UR-C06, SR-F03, SR-F08 |
-| Payment Processing | Handles Stripe checkout and payment confirmation | Payment, Stripe webhook | UR-C04, SR-F01, SR-F10 |
-| Inventory Management | Tracks stock availability and reorder thresholds | Product, Inventory | UR-A02, UR-B05, SR-F05, SR-F08 |
-| Loyalty Management | Awards and redeems points | Customer loyalty balance, payment outcomes | UR-C07, UR-C08, SR-F06, SR-F07 |
-| Delivery Management | Assigns, tracks, and completes deliveries | Delivery, Staff, route details | UR-A05, UR-D01-UR-D04 |
-| Notification Services | Sends confirmation and status messages | Email triggers, order status events | UR-C05, UR-C06, SR-F02 |
-| Reporting/Admin Dashboard | Supports monitoring and control by the owner | Sales, stock alerts, order summaries | UR-A03, UR-A06 |
-
-This architecture provides a requirements-to-design traceability layer, bridging the functional requirements model from Phase 3 with the process-oriented Data Flow Diagrams (Sections 4.2-4.3), the use case diagram (Section 4.4), and the data-oriented Entity Relationship Diagram (Section 4.5) that follow. By explicitly naming modules and their responsibilities, the design demonstrates how the system's behavior is partitioned and how each module contributes to the overall solution.
-
----
-
-### **4.2 Context Diagram (DFD Level 0\)**
+### **4.1 Context Diagram (DFD Level 0\)**
 
 The context diagram presents the **FreshBakes Web System as a single process** surrounded by all external entities that interact with it. This establishes the system boundary.
 
-```mermaid
-flowchart LR
-    CUST(["👤 Customer"])
-    BAKER(["🍞 Baker"])
-    ADMIN(["🛠️ Admin"])
-    DEL(["🚚 Delivery Staff"])
-    STRIPE(["💳 Stripe"])
-    EMAIL(["📧 Email Service"])
+`flowchart LR`  
+    `CUST(["👤 Customer"])`  
+    `BAKER(["🍞 Baker"])`  
+    `ADMIN(["🛠️ Admin"])`  
+    `DEL(["🚚 Delivery Staff"])`  
+    `STRIPE(["💳 Stripe"])`  
+    `EMAIL(["📧 Email Service"])`
 
-    CUST -->|"Order details, Payment"| SYS["🎂 FreshBakes Web System"]
-    SYS -->|"Confirmation, Order status, Loyalty balance"| CUST
+    `CUST -->|"Order details, Payment"| SYS["🎂 FreshBakes Web System"]`  
+    `SYS -->|"Confirmation, Order status, Loyalty balance"| CUST`
 
-    BAKER -->|"Order status updates, Delay flags"| SYS
-    SYS -->|"Order queue, Custom specs, Stock alerts"| BAKER
+    `BAKER -->|"Order status updates, Delay flags"| SYS`  
+    `SYS -->|"Order queue, Custom specs, Stock alerts"| BAKER`
 
-    ADMIN -->|"Menu updates, Inventory adjustments, User management"| SYS
-    SYS -->|"Sales reports, Dashboard data, Stock alerts"| ADMIN
+    `ADMIN -->|"Menu updates, Inventory adjustments, User management"| SYS`  
+    `SYS -->|"Sales reports, Dashboard data, Stock alerts"| ADMIN`
 
-    DEL -->|"Delivery confirmations"| SYS
-    SYS -->|"Delivery assignments, Route info"| DEL
+    `DEL -->|"Delivery confirmations"| SYS`  
+    `SYS -->|"Delivery assignments, Route info"| DEL`
 
-    SYS -->|"Payment request"| STRIPE
-    STRIPE -->|"payment_intent.succeeded webhook"| SYS
+    `SYS -->|"Payment request"| STRIPE`  
+    `STRIPE -->|"payment_intent.succeeded webhook"| SYS`
 
-    SYS -->|"Transactional emails"| EMAIL
-```
+    `SYS -->|"Transactional emails"| EMAIL`
 
 ---
 
-### **4.3 DFD Level 1 — Order Flow**
+### **4.2 DFD Level 1 — Order Flow**
 
 Level 1 decomposes the central system into its **six core processes**, showing how data flows between them, external entities, and data stores.
 
-```mermaid
-flowchart TD
-    CUST(["👤 Customer"])
-    BAKER(["🍞 Baker"])
-    DEL(["🚚 Delivery Staff"])
-    STRIPE(["💳 Stripe"])
+`flowchart TD`  
+    `CUST(["👤 Customer"])`  
+    `BAKER(["🍞 Baker"])`  
+    `DEL(["🚚 Delivery Staff"])`  
+    `STRIPE(["💳 Stripe"])`
 
-    DS1([("📦 Order Store")])
-    DS2([("🥐 Inventory Store")])
-    DS3([("👥 Customer Store")])
+    `DS1[("📦 Order Store")]`  
+    `DS2[("🥐 Inventory Store")]`  
+    `DS3[("👥 Customer Store")]`
 
-    CUST -->|"Order details"| P1["1.0 Process Order"]
-    P1 -->|"Check stock levels"| P2["2.0 Manage Inventory"]
-    P2 -->|"Stock availability"| P1
-    P1 -->|"Payment request"| P3["3.0 Process Payment"]
-    P3 <-->|"Payment authorisation / webhook"| STRIPE
-    P3 -->|"Confirmed order"| P4["4.0 Notify Baker"]
-    P3 -->|"Deduct stock"| P2
-    P4 -->|"Order queue update"| BAKER
-    BAKER -->|"Status update"| P5["5.0 Track & Deliver"]
-    P5 -->|"Delivery assignment"| DEL
-    DEL -->|"Delivery confirmed"| P5
-    P5 -->|"Status notification"| CUST
-    P3 -->|"Points transaction"| P6["6.0 Loyalty Engine"]
-    P6 -->|"Points balance update"| CUST
+    `CUST -->|"Order details"| P1["1.0 Process Order"]`  
+    `P1 -->|"Check stock levels"| P2["2.0 Manage Inventory"]`  
+    `P2 -->|"Stock availability"| P1`  
+    `P1 -->|"Payment request"| P3["3.0 Process Payment"]`  
+    `P3 <-->|"Payment authorisation / webhook"| STRIPE`  
+    `P3 -->|"Confirmed order"| P4["4.0 Notify Baker"]`  
+    `P3 -->|"Deduct stock"| P2`  
+    `P4 -->|"Order queue update"| BAKER`  
+    `BAKER -->|"Status update"| P5["5.0 Track & Deliver"]`  
+    `P5 -->|"Delivery assignment"| DEL`  
+    `DEL -->|"Delivery confirmed"| P5`  
+    `P5 -->|"Status notification"| CUST`  
+    `P3 -->|"Points transaction"| P6["6.0 Loyalty Engine"]`  
+    `P6 -->|"Points balance update"| CUST`
 
-    P1 --- DS1
-    P2 --- DS2
-    P6 --- DS3
-```
+    `P1 --- DS1`  
+    `P2 --- DS2`  
+    `P6 --- DS3`
 
 ---
 
-### **4.4 Use Case Diagram**
+### **4.3 Use Case Diagram**
 
 Actors: **Customer, Baker, Admin, Delivery Staff**
 
-```mermaid
-graph LR
-    CUST(("👤 Customer"))
-    BAKER(("🍞 Baker"))
-    ADMIN(("🛠️ Admin"))
-    DEL(("🚚 Delivery Staff"))
+`graph LR`  
+    `CUST(("👤 Customer"))`  
+    `BAKER(("🍞 Baker"))`  
+    `ADMIN(("🛠️ Admin"))`  
+    `DEL(("🚚 Delivery Staff"))`
 
-    subgraph FreshBakes Web System
-        UC1(["Browse Menu"])
-        UC2(["Place Order"])
-        UC3(["Customise Cake"])
-        UC4(["Make Payment"])
-        UC5(["Track Order Status"])
-        UC6(["Manage Loyalty Points"])
-        UC7(["View Order Queue"])
-        UC8(["Update Order Status"])
-        UC9(["Check Inventory"])
-        UC10(["Flag Order Delay"])
-        UC11(["Manage Menu & Products"])
-        UC12(["Manage Inventory"])
-        UC13(["View Reports & Dashboard"])
-        UC14(["Assign Deliveries"])
-        UC15(["View Delivery List"])
-        UC16(["Complete Delivery"])
-        UC17(["Navigate Route"])
-    end
+    `subgraph FreshBakes Web System`  
+        `UC1(["Browse Menu"])`  
+        `UC2(["Place Order"])`  
+        `UC3(["Customise Cake"])`  
+        `UC4(["Make Payment"])`  
+        `UC5(["Track Order Status"])`  
+        `UC6(["Manage Loyalty Points"])`  
+        `UC7(["View Order Queue"])`  
+        `UC8(["Update Order Status"])`  
+        `UC9(["Check Inventory"])`  
+        `UC10(["Flag Order Delay"])`  
+        `UC11(["Manage Menu & Products"])`  
+        `UC12(["Manage Inventory"])`  
+        `UC13(["View Reports & Dashboard"])`  
+        `UC14(["Assign Deliveries"])`  
+        `UC15(["View Delivery List"])`  
+        `UC16(["Complete Delivery"])`  
+        `UC17(["Navigate Route"])`  
+    `end`
 
-    CUST --- UC1
-    CUST --- UC2
-    CUST --- UC3
-    CUST --- UC4
-    CUST --- UC5
-    CUST --- UC6
+    `CUST --- UC1`  
+    `CUST --- UC2`  
+    `CUST --- UC3`  
+    `CUST --- UC4`  
+    `CUST --- UC5`  
+    `CUST --- UC6`
 
-    BAKER --- UC7
-    BAKER --- UC8
-    BAKER --- UC9
-    BAKER --- UC10
+    `BAKER --- UC7`  
+    `BAKER --- UC8`  
+    `BAKER --- UC9`  
+    `BAKER --- UC10`
 
-    ADMIN --- UC11
-    ADMIN --- UC12
-    ADMIN --- UC13
-    ADMIN --- UC14
+    `ADMIN --- UC11`  
+    `ADMIN --- UC12`  
+    `ADMIN --- UC13`  
+    `ADMIN --- UC14`
 
-    DEL --- UC15
-    DEL --- UC16
-    DEL --- UC17
-```
+    `DEL --- UC15`  
+    `DEL --- UC16`  
+    `DEL --- UC17`
 
 ---
 
-### **4.5 Entity Relationship Diagram (ERD)**
+### **4.4 Entity Relationship Diagram (ERD)**
 
 Entities: **Customer, Order, Product, Inventory, Payment** (plus supporting entities Order\_Item, Delivery, Staff)
 
-```mermaid
-erDiagram
-    CUSTOMER {
-        int     customer_id     PK
-        string  first_name
-        string  last_name
-        string  email
-        string  phone
-        string  address
-        int     loyalty_points
-        datetime created_at
-    }
-    ORDER {
-        int     order_id        PK
-        int     customer_id     FK
-        string  status
-        string  order_type
-        datetime order_date
-        datetime required_by
-        decimal total_amount
-        string  delivery_address
-        string  notes
-    }
-    ORDER_ITEM {
-        int     item_id         PK
-        int     order_id        FK
-        int     product_id      FK
-        int     quantity
-        decimal unit_price
-        string  customisation
-    }
-    PRODUCT {
-        int     product_id      PK
-        string  name
-        string  description
-        decimal price
-        string  category
-        boolean is_available
-        string  image_url
-    }
-    INVENTORY {
-        int     inventory_id    PK
-        int     product_id      FK
-        int     quantity_available
-        int     reorder_threshold
-        datetime last_updated
-    }
-    PAYMENT {
-        int     payment_id      PK
-        int     order_id        FK
-        string  stripe_payment_id
-        decimal amount
-        string  status
-        string  currency
-        datetime processed_at
-        int     loyalty_points_used
-    }
-    DELIVERY {
-        int     delivery_id     PK
-        int     order_id        FK
-        int     staff_id        FK
-        string  status
-        string  route_notes
-        datetime assigned_at
-        datetime completed_at
-    }
-    STAFF {
-        int     staff_id        PK
-        string  name
-        string  role
-        string  email
-    }
+`erDiagram`  
+    `CUSTOMER {`  
+        `int     customer_id     PK`  
+        `string  first_name`  
+        `string  last_name`  
+        `string  email`  
+        `string  phone`  
+        `string  address`  
+        `int     loyalty_points`  
+        `datetime created_at`  
+    `}`  
+    `ORDER {`  
+        `int     order_id        PK`  
+        `int     customer_id     FK`  
+        `string  status`  
+        `string  order_type`  
+        `datetime order_date`  
+        `datetime required_by`  
+        `decimal total_amount`  
+        `string  delivery_address`  
+        `string  notes`  
+    `}`  
+    `ORDER_ITEM {`  
+        `int     item_id         PK`  
+        `int     order_id        FK`  
+        `int     product_id      FK`  
+        `int     quantity`  
+        `decimal unit_price`  
+        `string  customisation`  
+    `}`  
+    `PRODUCT {`  
+        `int     product_id      PK`  
+        `string  name`  
+        `string  description`  
+        `decimal price`  
+        `string  category`  
+        `boolean is_available`  
+        `string  image_url`  
+    `}`  
+    `INVENTORY {`  
+        `int     inventory_id    PK`  
+        `int     product_id      FK`  
+        `int     quantity_available`  
+        `int     reorder_threshold`  
+        `datetime last_updated`  
+    `}`  
+    `PAYMENT {`  
+        `int     payment_id      PK`  
+        `int     order_id        FK`  
+        `string  stripe_payment_id`  
+        `decimal amount`  
+        `string  status`  
+        `string  currency`  
+        `datetime processed_at`  
+        `int     loyalty_points_used`  
+    `}`  
+    `DELIVERY {`  
+        `int     delivery_id     PK`  
+        `int     order_id        FK`  
+        `int     staff_id        FK`  
+        `string  status`  
+        `string  route_notes`  
+        `datetime assigned_at`  
+        `datetime completed_at`  
+    `}`  
+    `STAFF {`  
+        `int     staff_id        PK`  
+        `string  name`  
+        `string  role`  
+        `string  email`  
+    `}`
 
-    CUSTOMER    ||--o{    ORDER       : "places"
-    ORDER       ||--|{    ORDER_ITEM  : "contains"
-    PRODUCT     ||--o{    ORDER_ITEM  : "included in"
-    PRODUCT     ||--||    INVENTORY   : "tracked by"
-    ORDER       ||--||    PAYMENT     : "settled by"
-    ORDER       ||--o|    DELIVERY    : "fulfilled via"
-    STAFF       ||--o{    DELIVERY    : "handles"
-```
+    `CUSTOMER    ||--o{    ORDER       : "places"`  
+    `ORDER       ||--|{    ORDER_ITEM  : "contains"`  
+    `PRODUCT     ||--o{    ORDER_ITEM  : "included in"`  
+    `PRODUCT     ||--||    INVENTORY   : "tracked by"`  
+    `ORDER       ||--||    PAYMENT     : "settled by"`  
+    `ORDER       ||--o|    DELIVERY    : "fulfilled via"`  
+    `STAFF       ||--o{    DELIVERY    : "handles"`
 
 ---
 
-### **4.6 Order Fulfillment Flowchart**
+### **4.5 Order Fulfillment Flowchart**
 
 This flowchart traces the complete journey of an order, including the critical **stock availability check** and payment handling logic.
 
-```mermaid
-flowchart TD
-    A(["👤 Customer Places Order"]) --> B["System Validates Order Details"]
-    B --> C{"All Items In Stock?"}
+`flowchart TD`  
+    `A(["👤 Customer Places Order"]) --> B["System Validates Order Details"]`  
+    `B --> C{"All Items In Stock?"}`
 
-    C -->|No| D["Display Out-of-Stock Message"]
-    D --> E["Suggest Alternatives / Remove Item"]
-    E --> F{"Customer Accepts?"}
-    F -->|No| G(["❌ Order Cancelled"])
-    F -->|Yes| C
+    `C -->|No| D["Display Out-of-Stock Message"]`  
+    `D --> E["Suggest Alternatives / Remove Item"]`  
+    `E --> F{"Customer Accepts?"}`  
+    `F -->|No| G(["❌ Order Cancelled"])`  
+    `F -->|Yes| C`
 
-    C -->|Yes| H["Calculate Total (inc. Loyalty Discount)"]
-    H --> I["Redirect to Stripe Checkout"]
-    I --> J{"Payment Successful?"}
+    `C -->|Yes| H["Calculate Total (inc. Loyalty Discount)"]`  
+    `H --> I["Redirect to Stripe Checkout"]`  
+    `I --> J{"Payment Successful?"}`
 
-    J -->|No| K["Display Payment Error"]
-    K --> L{"Retry?"}
-    L -->|Yes| I
-    L -->|No| G
+    `J -->|No| K["Display Payment Error"]`  
+    `K --> L{"Retry?"}`  
+    `L -->|Yes| I`  
+    `L -->|No| G`
 
-    J -->|Yes| M["Stripe Webhook Received (payment_intent.succeeded)"]
-    M --> N["Deduct Inventory Atomically"]
-    N --> O["Generate Unique Order Reference"]
-    O --> P["Award Loyalty Points to Customer"]
-    P --> Q["Send Confirmation Email"]
-    Q --> R["Add to Baker Order Queue"]
+    `J -->|Yes| M["Stripe Webhook Received (payment_intent.succeeded)"]`  
+    `M --> N["Deduct Inventory Atomically"]`  
+    `N --> O["Generate Unique Order Reference"]`  
+    `O --> P["Award Loyalty Points to Customer"]`  
+    `P --> Q["Send Confirmation Email"]`  
+    `Q --> R["Add to Baker Order Queue"]`
 
-    R --> S{"Order Type?"}
-    S -->|"Collection"| T["Baker Prepares Order"]
-    S -->|"Delivery"| T
+    `R --> S{"Order Type?"}`  
+    `S -->|"Collection"| T["Baker Prepares Order"]`  
+    `S -->|"Delivery"| T`
 
-    T --> U{"Baker Marks Order Ready?"}
-    U -->|"Yes – Collection"| V["Notify Customer: Ready for Collection"]
-    U -->|"Yes – Delivery"| W["Assign to Delivery Staff"]
+    `T --> U{"Baker Marks Order Ready?"}`  
+    `U -->|"Yes – Collection"| V["Notify Customer: Ready for Collection"]`  
+    `U -->|"Yes – Delivery"| W["Assign to Delivery Staff"]`
 
-    W --> X["Staff Completes Delivery & Marks Delivered"]
-    V --> Y(["✅ Order Fulfilled"])
-    X --> Y
-```
+    `W --> X["Staff Completes Delivery & Marks Delivered"]`  
+    `V --> Y(["✅ Order Fulfilled"])`  
+    `X --> Y`
 
 ---
 
-### **4.7 UI Wireframe Descriptions**
+### **4.6 UI Wireframe Descriptions**
 
 **Note:** These wireframes define layout, hierarchy, and component logic for implementation in Google Stitch or Figma. A separate prompt will generate the Stitch-ready prototype specifications.
 
@@ -854,7 +742,7 @@ flowchart TD
 
 ---
 
-### **4.8 Release Plan**
+### **4.7 Release Plan**
 
 #### **Phase 1 — MVP (Weeks 1–8)**
 
@@ -896,7 +784,7 @@ flowchart TD
 
 ---
 
-### **4.9 Design Effectiveness Assessment**
+### **4.8 Design Effectiveness Assessment**
 
 The system design addresses each of FreshBakes' original pain points directly:
 
