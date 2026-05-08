@@ -11,8 +11,8 @@
 |---------|------|
 | Prototyping / Wireframes | Google Stitch / Figma |
 | Diagrams (UML, DFD, ERD) | Mermaid (embedded in Markdown); Lucidchart for exports |
-| Version control | Git / GitHub |
-| Project management | GitHub Projects (sprint board) |
+| Version control | Git |
+| Project management | Jira / Trello (sprint board) |
 | Payment integration | Stripe API |
 | Frontend | React / Next.js |
 | Backend | Node.js |

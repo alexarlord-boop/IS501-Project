@@ -10,6 +10,7 @@
 
 | File | Deliverable |
 |------|-------------|
+| [FreshBakes_System_Design_Report.md](FreshBakes_System_Design_Report.md) | **Main Report** — Full IS501 system design submission (all four phases) |
 | [01_DFD_Context_Level0.md](01_DFD_Context_Level0.md) | Data Flow Diagram — Context Diagram (Level 0) |
 | [02_DFD_Level1_OrderFlow.md](02_DFD_Level1_OrderFlow.md) | Data Flow Diagram — Level 1 Order Flow Decomposition |
 | [03_Use_Case_Diagram.md](03_Use_Case_Diagram.md) | Use Case Diagram (Customer, Baker, Admin, Delivery Staff) |
@@ -20,14 +21,32 @@
 | [stitch prototype/baker_dashboard/code.html](stitch%20prototype/baker_dashboard/code.html) | Prototype — Baker Dashboard (open in browser) |
 | [stitch prototype/mobile_delivery_app/code.html](stitch%20prototype/mobile_delivery_app/code.html) | Prototype — Mobile Delivery App (open in browser) |
 
+### PDF versions (diagrams fully rendered — open in any PDF viewer)
+
+| PDF | Contents |
+|-----|----------|
+| [pdfs/FreshBakes_System_Design_Report.pdf](pdfs/FreshBakes_System_Design_Report.pdf) | Full main report |
+| [pdfs/01_DFD_Context_Level0.pdf](pdfs/01_DFD_Context_Level0.pdf) | DFD Level 0 |
+| [pdfs/02_DFD_Level1_OrderFlow.pdf](pdfs/02_DFD_Level1_OrderFlow.pdf) | DFD Level 1 |
+| [pdfs/03_Use_Case_Diagram.pdf](pdfs/03_Use_Case_Diagram.pdf) | Use Case Diagram |
+| [pdfs/04_ERD.pdf](pdfs/04_ERD.pdf) | ERD |
+| [pdfs/05_Flowchart_Order_Fulfillment.pdf](pdfs/05_Flowchart_Order_Fulfillment.pdf) | Order Fulfillment Flowchart |
+| [pdfs/06_Release_Plan.pdf](pdfs/06_Release_Plan.pdf) | Release Plan |
+
 ---
 
 ## Diagrams
 
-All diagrams (`01`–`05`) are written in **Mermaid** and render natively in:
-- GitHub / GitLab Markdown preview
-- VS Code with the Mermaid extension
-- Any Markdown viewer with Mermaid support (e.g. Typora, Obsidian)
+All diagrams (`01`–`05`) and the main report contain **Mermaid** diagrams embedded as code blocks. They will appear as **raw code** if opened in a plain text editor — to see them rendered as actual diagrams, use one of these options:
+
+> **Recommended: VS Code**
+> Open the folder in VS Code and install the [Markdown Preview Mermaid Support](https://marketplace.visualstudio.com/items?itemName=bierner.markdown-mermaid) extension. Then press `Cmd+Shift+V` (Mac) or `Ctrl+Shift+V` (Windows) to open the rendered preview with all diagrams visible.
+
+> **Alternative: Typora**
+> Open any `.md` file directly in Typora — Mermaid diagrams render natively with no extensions needed.
+
+> **Alternative: Obsidian**
+> Open the submission folder as an Obsidian vault; all diagrams render in the preview pane.
 
 ## Prototypes
 

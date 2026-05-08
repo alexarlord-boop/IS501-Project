@@ -2,6 +2,8 @@
 
 ### **IS501 Project Report | Nicosia, Cyprus**
 
+**Group Members:** Aleksandr Petrunin · Gennady Petrishchev · Manuel Wills · Matvey Firsov
+
 ---
 
 **Case Study:** FreshBakes Bakery is a family-owned shop in Nicosia, Cyprus, specialising in fresh pastries, cakes, and custom orders. The owner seeks a web-based system to manage customer orders, inventory, payments, and delivery scheduling in response to growing online demand and the post-2025 tourism boom.
@@ -727,130 +729,21 @@ flowchart TD
 
 ---
 
-### **4.7 UI Wireframe Descriptions**
+### **4.7 UI Prototypes**
 
-**Note:** These wireframes define layout, hierarchy, and component logic for implementation in Google Stitch or Figma. A separate prompt will generate the Stitch-ready prototype specifications.
+Interactive prototypes were built in Google Stitch and are included in the `stitch prototype/` folder. Open each `code.html` file directly in a browser.
 
----
+| Prototype | Actor | File |
+| :---- | :---- | :---- |
+| Customer Order Form | Customer | [stitch prototype/customer\_order\_page/code.html](stitch%20prototype/customer_order_page/code.html) |
+| Baker Dashboard | Baker | [stitch prototype/baker\_dashboard/code.html](stitch%20prototype/baker_dashboard/code.html) |
+| Mobile Delivery App | Delivery Staff | [stitch prototype/mobile\_delivery\_app/code.html](stitch%20prototype/mobile_delivery_app/code.html) |
 
-#### **(a) Customer Order Form**
+**Key design decisions reflected in the prototypes:**
 
-`┌─────────────────────────────────────────────────┐`  
-`│  FreshBakes               [Login] [Cart (2)]    │`  
-`├─────────────────────────────────────────────────┤`  
-`│  [ Search menu... ]                             │`  
-`│  Categories: [All] [Cakes] [Pastries] [Custom]  │`  
-`├──────────────┬──────────────┬───────────────────┤`  
-`│ [img]        │ [img]        │ [img]             │`  
-`│ Croissant    │ Birthday Cake│ Sourdough Loaf    │`  
-`│ €2.50        │ From €35.00  │ €6.00             │`  
-`│ [Add to Cart]│ [Customise →]│ [Add to Cart]     │`  
-`├──────────────┴──────────────┴───────────────────┤`  
-`│  CUSTOM CAKE CONFIGURATOR (expands on click)    │`  
-`│  Size:    [6"] [8"] [10"] [12"]                 │`  
-`│  Sponge:  [Vanilla ▼]                           │`  
-`│  Filling: [Buttercream ▼]                       │`  
-`│  Message: [___________________________]         │`  
-`│  Upload reference image: [Attach file]          │`  
-`│  Special instructions: [___________________]    │`  
-`├─────────────────────────────────────────────────┤`  
-`│  ORDER TYPE:  ● Delivery   ○ Collection         │`  
-`│  Delivery address: [_______________________]    │`  
-`│  Required by: [Date picker]  [Time]             │`  
-`├─────────────────────────────────────────────────┤`  
-`│  Loyalty Points: 240 pts available              │`  
-`│  [ Apply 200 pts = -€2.00 discount ]            │`  
-`├─────────────────────────────────────────────────┤`  
-`│  Subtotal: €37.50    Discount: -€2.00           │`  
-`│  TOTAL: €35.50                                  │`  
-`│              [ Proceed to Payment → ]           │`  
-`└─────────────────────────────────────────────────┘`
-
-**Key UX Notes:**
-
-* Product cards show real-time stock badges ("Only 3 left\!")  
-* Custom cake configurator is a collapsible accordion  
-* Loyalty points section only shown to logged-in users  
-* "Proceed to Payment" disabled until all required fields are valid  
-* Mobile-responsive: single-column card layout on screens \< 768px
-
----
-
-#### **(b) Baker Dashboard**
-
-`┌─────────────────────────────────────────────────┐`  
-`│  Baker Dashboard — Good morning, Yianna!        │`  
-`│  Saturday 05 Apr  |  08:14                      │`  
-`├───────────────┬────────────────┬────────────────┤`  
-`│ QUEUE         │ STOCK ALERTS   │ COMPLETED      │`  
-`│ 14 orders     │ 3 items low    │ 7 today        │`  
-`├───────────────┴────────────────┴────────────────┤`  
-`│  ACTIVE ORDER QUEUE (auto-refreshes 30s)        │`  
-`│ ┌─────────────────────────────────────────────┐ │`  
-`│ │ #FB-2041  |  08:00  |  URGENT               │ │`  
-`│ │ 2x Croissant, 1x Custom Cake (Vanilla/8")  │ │`  
-`│ │ Note: "Happy Birthday Elena"               │ │`  
-`│ │ Collection: 10:30am                        │ │`  
-`│ │ [Start Preparing]  [Flag Delay]            │ │`  
-`│ └─────────────────────────────────────────────┘ │`  
-`│ ┌─────────────────────────────────────────────┐ │`  
-`│ │ #FB-2042  |  08:05  |  DELIVERY             │ │`  
-`│ │ 1x Sourdough, 3x Almond Croissant          │ │`  
-`│ │ Delivery by: 11:00am                       │ │`  
-`│ │ [Start Preparing]                          │ │`  
-`│ └─────────────────────────────────────────────┘ │`  
-`├─────────────────────────────────────────────────┤`  
-`│  LOW STOCK ALERTS                               │`  
-`│  • Almond Flour — 200g remaining  [Notify Admin]│`  
-`│  • Eggs — 6 remaining             [Notify Admin]│`  
-`└─────────────────────────────────────────────────┘`
-
-**Key UX Notes:**
-
-* Optimised for 10-inch tablet; large tap targets (min 44px)  
-* Orders colour-coded: Red \= urgent, Orange \= delivery, Green \= collection  
-* Status button advances order through workflow with single tap  
-* Low-stock alerts persist at bottom until admin acknowledges  
-* Sound alert option for new incoming orders
-
----
-
-#### **(c) Mobile Delivery App (PWA)**
-
-`┌─────────────────────────┐`  
-`│ FreshBakes Delivery     │`  
-`│ Nikos — Sat 05 Apr      │`  
-`├─────────────────────────┤`  
-`│ TODAY'S ROUTE  (4 stops)│`  
-`│ ─────────────────────── │`  
-`│ [Done] 1. Makarios Ave 12│`  
-`│    FB-2038 — Delivered  │`  
-`│                         │`  
-`│ > 2. Ledra St 45 [NOW]  │`  
-`│    FB-2041              │`  
-`│    Maria Georgiou       │`  
-`│    Tel: 99-123456       │`  
-`│    Custom cake – FRAGILE│`  
-`│                         │`  
-`│    [Navigate]           │`  
-`│    [Mark Delivered]     │`  
-`│ ─────────────────────── │`  
-`│ 3. Athalassa Ave 8      │`  
-`│    FB-2043              │`  
-`│                         │`  
-`│ 4. Nicosia Mall Gate 2  │`  
-`│    FB-2045              │`  
-`├─────────────────────────┤`  
-`│ [All Orders] [Call HQ]  │`  
-`└─────────────────────────┘`
-
-**Key UX Notes:**
-
-* PWA — works offline; delivery list cached at start of shift  
-* Active stop highlighted with arrow; completed stops greyed  
-* One-tap "Navigate" opens Google Maps with address pre-filled  
-* "Mark Delivered" requires confirmation tap to prevent accidents  
-* HQ call button visible on every screen for urgent contact
+* **Customer Order Form** — product grid with real-time stock badges, collapsible custom cake configurator, loyalty points redemption, delivery/collection toggle, and Stripe checkout flow.
+* **Baker Dashboard** — tablet-optimised order queue (auto-refreshes every 30 s), colour-coded urgency, one-tap status advancement, and persistent low-stock alerts.
+* **Mobile Delivery App (PWA)** — daily route list with active stop highlighted, one-tap Google Maps navigation, "Mark Delivered" confirmation, and offline cache support.
 
 ---
 
